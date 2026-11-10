@@ -204,8 +204,8 @@ function render(){
   var op=S.shop.filter(function(x){return!x.d});
   h+='<div class="card"><h2>Λίστα αγορών</h2>'+(op.length?op.slice(0,5).map(function(x){return '<div class="row"><span>'+esc(x.t)+'</span></div>'}).join('')+(op.length>5?'<div class="path">+ '+(op.length-5)+' ακόμα → Λίστα</div>':''):'<div class="empty-state"><div class="big">🛒</div><p>Η λίστα είναι άδεια</p><button class="g" onclick="view=\'shop\';render()">Άνοιγμα λίστας</button></div>')+'</div>';
   h+=storageWarn();
-  h+='<div class="card"><h2>Αντίγραφο ασφαλείας & Ειδοποιήσεις</h2><div class="path" style="margin-bottom:8px">Κράτα ένα αρχείο με όλα τα δεδομένα σου. Μπορείς επίσης να ενεργοποιήσεις ειδοποιήσεις για λήξεις και φάρμακα.</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button onclick="doExport()">⬇ Εξαγωγή Δεδομένων (JSON)</button><button class="g" onclick="document.getElementById(\'imf\').click()">⬆ Εισαγωγή Δεδομένων</button><button class="g" onclick="toggleNotif()">🔔 Ειδοποιήσεις</button></div><input id="imf" type="file" accept=".json,application/json" style="display:none" onchange="doImport(this)"></div>';
  }
+
  if(view=='plan'){if(ge&&!hxOf(hs))ge=false;if(hxOf(hs)&&FLR>=hFl(hxOf(hs)).length)FLR=0;h+=houseTabs()+(hxOf(hs)?(ge?gePlan(hs):planSvgC(hs)):hs==6?planSvg8():hs==5?planSvg7():hs==4?planSvg6():hs==3?planSvg5():hs==2?planSvg4():planSvg2())+'<div id="fp"></div>'+houseBtns();}if(view=='planold'){
   h+='<div class="card"><h2>Κάτοψη</h2><div class="plan">'+S.rooms.map(function(r,i){var n=S.items.filter(function(x){return x.r==i}).length;return '<button class="room" onclick="cur='+i+';view=\'room\';render()"><b>'+esc(r.n)+'</b><small>'+n+' αντικ.</small>'+(i==4||i==5?'<span class="door">🚪</span>':'')+'</button>'}).join('')+'</div></div>';
  }
@@ -223,8 +223,10 @@ function render(){
  if(view=='shelf'){var fo=fobj(cur,curF),so=fo?fo.s[curS]:null;if(so==null){view='room';render();return}var its2=S.items.filter(function(i){return i.r==cur&&i.f==curF&&i.s==so});h+='<button class="g" onclick="view=\'room\';render()">← '+esc(S.rooms[cur].n)+'</button><h3>'+esc(fo.n)+' ➔ '+esc(so)+'</h3><div class="card">'+(its2.length?its2.map(itemRow).join(''):'<div class="empty-state"><div class="big">📦</div><p>Άδειο ράφι</p><button onclick="itemForm(null,curF,curS)">+ Πρόσθεσε αντικείμενο</button></div>')+'</div><button onclick="itemForm(null,curF,curS)">+ Αντικείμενο</button><div class="card" style="margin-top:12px"><h2>Σημειώσεις ραφιού</h2><textarea rows="3" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit" oninput="shNote(this.value)">'+esc((fo.sn||{})[so]||'')+'</textarea></div>'}if(view=='shop'){
   var lowq=S.items.filter(function(i){return i.m!==''&&i.m!=null&&i.q!==''&&i.q!=null&&+i.q<+i.m});if(lowq.length)h+='<div class="card"><h2>Τελειώνουν (αυτόματα)</h2>'+lowq.map(function(i){return '<div class="row"><span>'+esc(i.n)+' <span class="warn">'+esc(i.q)+'/'+esc(i.m)+' '+esc(i.u||'')+'</span></span></div>'}).join('')+'</div>';h+='<div class="card"><h2>Λίστα αγορών / εκκρεμότητες</h2><input id="sh" placeholder="Νέο είδος..." onkeydown="if(event.key==\'Enter\')addShop()"><button onclick="addShop()">Προσθήκη</button><div style="margin-top:8px">'+(S.shop.length?S.shop.map(function(x,i){return '<div class="row"><label><input type="checkbox" style="width:auto;margin:0 8px 0 0" '+(x.d?'checked':'')+' onchange="S.shop['+i+'].d=this.checked;save();render()">'+(x.d?'<s>'+esc(x.t)+'</s>':esc(x.t))+'</label>'+(x.d?'<button class="g" onclick="quickAdd(S.shop['+i+'].t)">🏠 στο σπίτι</button>':'')+'<button class="r" onclick="S.shop.splice('+i+',1);save();render()">✕</button></div>'}).join(''):'<div class="empty-state"><div class="big">🛒</div><p>Δεν έχεις τίποτα στη λίστα ακόμα</p></div>')+'</div></div>';
  }
- if(view=='work')h+=workHtml();document.getElementById('app').innerHTML=h;document.getElementById('app').className='v-'+view;if(view=='room')initCv();if(view=='plan'){if(ge)geInit();else furnInit()}
- document.getElementById('nav').innerHTML=[['home','🏠 Αρχική'],['plan','🗺 Κάτοψη'],['work','🧰 Εργασίες'],['shop','🛒 Λίστα']].map(function(t){return '<button class="'+((view==t[0]||(t[0]=='plan'&&(view=='room'||view=='shelf')))?'on':'')+'" onclick="view=\''+t[0]+'\';render()">'+t[1]+'</button>'}).join('');
+ if(view=='work')h+=workHtml();
+ if(view=='menu')h+=menuHtml();
+ document.getElementById('app').innerHTML=h;document.getElementById('app').className='v-'+view;if(view=='room')initCv();if(view=='plan'){if(ge)geInit();else furnInit()}
+ document.getElementById('nav').innerHTML=[['home','🏠 Αρχική'],['plan','🗺 Κάτοψη'],['shop','🛒 Λίστα'],['menu','☰ Μενού']].map(function(t){return '<button class="'+((view==t[0]||(t[0]=='plan'&&(view=='room'||view=='shelf'))||(t[0]=='menu'&&view=='work'))?'on':'')+'" onclick="view=\''+t[0]+'\';render()">'+t[1]+'</button>'}).join('');
  tick();post();
 }
 function keep(){var p=document.getElementById('q').selectionStart;render();var e=document.getElementById('q');e.focus();e.setSelectionRange(p,p)}
@@ -351,12 +353,37 @@ function recRow(k,r){var sub='',bad=false,d;
  if(k=='d'){sub=[r.room?'🚪 '+r.room:'',r.where?'📍 '+r.where:'',r.e?'λήξη '+r.e:'',r.note].filter(Boolean).join(' · ');bad=r.e&&days(r.e)<=30}
  var ok=(k=='t'||k=='b'||(k=='l'&&!r.ret)||k=='m')?'<button onclick="recDo(\''+k+'\',\''+r.id+'\')">'+(k=='l'?'↩':k=='m'?'💊 Πήρα':'✓')+'</button>':'';
  return '<div class="row"><div>'+(r.p?'<img class="th" src="'+r.p+'" onclick="recZoom(\''+r.id+'\')">':'')+'<b>'+esc(r.n)+'</b><div class="path '+(bad?'warn':'')+'">'+esc(sub)+'</div></div><div style="display:flex;gap:4px">'+ok+'<button class="g" onclick="recForm(\''+k+'\',\''+r.id+'\')">✎</button><button class="r" onclick="recDel(\''+k+'\',\''+r.id+'\')">✕</button></div></div>'}
-function workHtml(){var h='<div class="card"><div class="chips">'+Object.keys(SEC).map(function(k){return '<button class="'+(wk==k?'':'g')+'" onclick="wk=\''+k+'\';render()">'+SEC[k].ic+' '+SEC[k].n+'</button>'}).join('')+'</div></div>';
+function workHtml(){var h='<button class="g" onclick="view=\'menu\';render()">← Μενού</button><h3>'+SEC[wk].ic+' '+esc(SEC[wk].n)+'</h3>';
  if(wk=='f'){var F=S.items.filter(function(i){return i.r==1||tg(i).indexOf('Τρόφιμα')>=0}).sort(function(a,b){return(a.e||'9')<(b.e||'9')?-1:1});return h+'<div class="card">'+(F.length?F.map(itemRow).join(''):'<div class="empty-state"><div class="big">🥫</div><p>Κανένα τρόφιμο ακόμα</p></div>')+'</div><button style="width:100%;margin-bottom:8px" onclick="cur=1;itemForm();document.getElementById(\'fc\').value=\'Τρόφιμα\'">+ Τρόφιμο</button><button class="g" style="width:100%" onclick="recipes()">🍳 Τι να μαγειρέψω;</button>'}
  var L=recs(wk).slice();if(wk=='t'||wk=='b')L.sort(function(a,b){var x=wk=='t'?nextT(a):billNext(a),y=wk=='t'?nextT(b):billNext(b);return x<y?-1:1});
  h+='<div class="card">'+(L.length?L.map(function(r){return recRow(wk,r)}).join(''):'<div class="empty-state"><div class="big">'+SEC[wk].ic+'</div><p>Τίποτα ακόμα σε «'+SEC[wk].n+'»</p></div>')+'</div>';
  if(wk=='r'){var s=0;recs('r').forEach(function(r){s+=+r.cost||0});if(s)h+='<div class="path" style="margin-bottom:8px">Συνολικό κόστος επισκευών: '+s+'€</div>'}
  return h+'<button style="width:100%" onclick="recForm(wk)">+ Προσθήκη</button>'}
+function menuHtml(){
+ var h='<h3 style="margin:6px 0 14px">☰ Μενού</h3>';
+ h+='<div class="card"><h2>Εργασίες</h2>';
+ Object.keys(SEC).forEach(function(k){
+  var cnt=k=='f'?S.items.filter(function(i){return i.r==1||tg(i).indexOf('Τρόφιμα')>=0}).length:recs(k).length;
+  h+='<div class="row" style="cursor:pointer" onclick="wk=\''+k+'\';view=\'work\';render()"><span style="font-size:20px;margin-right:10px">'+SEC[k].ic+'</span><div style="flex:1"><b>'+esc(SEC[k].n)+'</b>'+(cnt?'<div class="path">'+cnt+' εγγραφές</div>':'')+'</div><span style="color:var(--mu)">›</span></div>';
+ });
+ h+='</div>';
+ h+='<div class="card"><div class="row" style="cursor:pointer" onclick="openSettings()"><span style="font-size:20px;margin-right:10px">⚙️</span><div style="flex:1"><b>Ρυθμίσεις</b><div class="path">Θέμα, ειδοποιήσεις, εμφάνιση</div></div><span style="color:var(--mu)">›</span></div></div>';
+ h+='<div class="card"><h2>Αντίγραφο ασφαλείας & Ειδοποιήσεις</h2><div class="path" style="margin-bottom:10px">Κράτα ένα αρχείο με όλα τα δεδομένα σου. Μπορείς επίσης να ενεργοποιήσεις ειδοποιήσεις για λήξεις και φάρμακα.</div>';
+ h+=storageWarn();
+ h+='<div style="display:flex;gap:8px;flex-wrap:wrap"><button onclick="doExport()">⬇ Εξαγωγή (JSON)</button><button class="g" onclick="document.getElementById(\'imf\').click()">⬆ Εισαγωγή</button><button class="g" onclick="toggleNotif()">🔔 Ειδοποιήσεις</button></div>';
+ h+='<input id="imf" type="file" accept=".json,application/json" style="display:none" onchange="doImport(this)"></div>';
+ return h;
+}
+function openSettings(){
+ var th=document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+ var notifOn=S.notif!==false&&('Notification' in window)&&Notification.permission==='granted';
+ document.getElementById('md').innerHTML='<div class="modal"><div><h3>⚙️ Ρυθμίσεις</h3>'+
+  '<div class="row"><span><b>Θέμα</b><div class="path">'+(th==='dark'?'Σκοτεινό':'Φωτεινό')+'</div></span><button class="g" onclick="toggleTheme();closeM();openSettings()">🌓 Αλλαγή</button></div>'+
+  '<div class="row"><span><b>Ειδοποιήσεις</b><div class="path">'+(notifOn?'Ενεργές':'Ανενεργές')+'</div></span><button class="g" onclick="toggleNotif();setTimeout(function(){openSettings()},300)">🔔</button></div>'+
+  '<div class="row"><span><b>Κρύψε άδεια ράφια</b><div class="path">'+(S.hideEmpty?'Ναι':'Όχι')+'</div></span><button class="g" onclick="S.hideEmpty=!S.hideEmpty;save();openSettings()">'+(S.hideEmpty?'👁 Εμφάνισε':'🙈 Κρύψε')+'</button></div>'+
+  '<div class="row"><span><b>Έκδοση</b><div class="path">v'+(S.v||3)+'</div></span></div>'+
+  '<button class="g" style="width:100%;margin-top:12px" onclick="closeM()">Κλείσιμο</button></div></div>';
+}
 function recForm(k,id){var r=id?recGet(k,id):{};ed={p:r.p||''};var h='<div class="modal"><div><h3>'+SEC[k].ic+' '+SEC[k].n+'</h3>';
  SEC[k].f.forEach(function(f){var v=r[f[0]]!=null?r[f[0]]:(f[0]=='fr'?7:'');h+='<label class="path">'+f[1]+'</label>';
   if(f[2]=='sel')h+='<select id="rf_'+f[0]+'">'+FR.map(function(a){return '<option value="'+a[0]+'"'+(a[0]==v?' selected':'')+'>'+a[1]+'</option>'}).join('')+'</select>';
