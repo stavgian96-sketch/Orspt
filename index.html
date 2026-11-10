@@ -5,94 +5,254 @@
 <meta name="theme-color" content="#F7F5F2">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<title>Οργάνωση Σπιτιού · v3</title>
+<title>Οργάνωση Σπιτιού</title>
 <style>
-:root{--bg:#F7F5F2;--bg2:#F0EDE8;--card:rgba(255,255,255,.52);--sheet:rgba(250,248,244,.84);--field:rgba(255,255,255,.55);--tx:#1b2220;--mu:#5f6965;--ac:#1A7A6D;--onac:#fff;--rd:#d4402f;--onrd:#fff;--bd:rgba(27,34,32,.09);--gb:rgba(255,255,255,.75);--hi:rgba(255,255,255,.55);--spec:rgba(255,255,255,.9);--sh:rgba(20,50,44,.2);--wall:rgba(27,34,32,.5);--door:#FF6B3D;--rs:rgba(255,255,255,.9);--lbl:rgba(255,255,255,.6);--plate:rgba(255,255,255,.18);--g1:rgba(26,122,109,.2);--g2:rgba(255,143,107,.24);--navon:rgba(26,122,109,.14);--plusg:#b0432a;--blur:blur(24px) saturate(180%);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#060908;--bg2:#0b100e;--card:rgba(34,46,42,.42);--sheet:rgba(18,26,23,.84);--field:rgba(255,255,255,.07);--tx:#eef3f1;--mu:#9fada8;--ac:#4fc4af;--onac:#04201a;--rd:#ff6b5b;--onrd:#2a0804;--bd:rgba(255,255,255,.09);--gb:rgba(255,255,255,.14);--hi:rgba(255,255,255,.14);--spec:rgba(255,255,255,.2);--sh:rgba(0,0,0,.55);--wall:rgba(255,255,255,.5);--door:#ff8a5c;--rs:rgba(255,255,255,.3);--lbl:rgba(0,0,0,.45);--plate:rgba(255,255,255,.04);--g1:rgba(26,160,135,.34);--g2:rgba(255,140,100,.12);--navon:rgba(79,196,175,.16);--plusg:#ffab8f;--blur:blur(32px) saturate(200%);color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#060908;--bg2:#0b100e;--card:rgba(34,46,42,.42);--sheet:rgba(18,26,23,.84);--field:rgba(255,255,255,.07);--tx:#eef3f1;--mu:#9fada8;--ac:#4fc4af;--onac:#04201a;--rd:#ff6b5b;--onrd:#2a0804;--bd:rgba(255,255,255,.09);--gb:rgba(255,255,255,.14);--hi:rgba(255,255,255,.14);--spec:rgba(255,255,255,.2);--sh:rgba(0,0,0,.55);--wall:rgba(255,255,255,.5);--door:#ff8a5c;--rs:rgba(255,255,255,.3);--lbl:rgba(0,0,0,.45);--plate:rgba(255,255,255,.04);--g1:rgba(26,160,135,.34);--g2:rgba(255,140,100,.12);--navon:rgba(79,196,175,.16);--plusg:#ffab8f;--blur:blur(32px) saturate(200%);color-scheme:dark}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 -apple-system,system-ui,sans-serif;padding-bottom:70px}
-main{max-width:640px;margin:auto;padding:14px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin-bottom:12px}
-h2{font-size:15px;margin:0 0 8px;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
-.clock{font-size:42px;font-weight:700}.date{color:var(--mu)}
-input,select,button{font:inherit;color:var(--tx)}
-input,select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);margin-bottom:8px}
-button{border:0;border-radius:10px;padding:10px 14px;background:var(--ac);color:#fff;cursor:pointer}
-button.g{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}button.r{background:var(--rd)}
-.chips{display:flex;flex-wrap:wrap;gap:6px}.chips button{padding:6px 12px;border-radius:99px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd)}
-.row:last-child{border:0}.path{color:var(--mu);font-size:13px}
-.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.room{position:relative;min-height:96px;background:var(--bg);border:2px solid var(--tx);border-radius:6px;padding:8px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;color:var(--tx)}
-.room small{color:var(--mu)}.door{position:absolute;right:4px;bottom:2px;font-size:20px}
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px)}
-nav button{flex:1;border-radius:0;background:none;color:var(--mu);padding:14px 4px}nav button.on{color:var(--ac);font-weight:700}
-.modal{position:fixed;inset:0;background:#0008;display:flex;align-items:flex-end;justify-content:center;z-index:9}
-.modal>div{background:var(--card);width:100%;max-width:640px;border-radius:18px 18px 0 0;padding:16px;max-height:90vh;overflow:auto}
-.warn{color:var(--rd)}.hl{animation:bl 1s infinite}@keyframes bl{50%{opacity:.25}}#pr{display:none;white-space:pre-wrap;font:13px monospace;color:#000;background:#fff}@media print{main,nav,#md,#tt{display:none!important}#pr{display:block!important}body{background:#fff}}
-img.th{width:52px;height:52px;object-fit:cover;border-radius:8px;float:left;margin-right:8px;cursor:pointer}
-/* ===== Liquid Glass layer ===== */
-body{font:16px/1.45 "Inter",-apple-system,"SF Pro Text",system-ui,sans-serif;font-feature-settings:"cv11","ss03";-webkit-font-smoothing:antialiased;background:linear-gradient(165deg,var(--bg),var(--bg2)) fixed;min-height:100vh;padding-bottom:116px}
-body::before{content:"";position:fixed;inset:-10%;z-index:-1;pointer-events:none;background:radial-gradient(45% 35% at 12% 8%,var(--g1),transparent 70%),radial-gradient(40% 32% at 92% 28%,var(--g2),transparent 70%),radial-gradient(50% 40% at 25% 100%,var(--g1),transparent 70%)}
-main{padding:18px 14px}
+:root{
+  --bg:#F6F4F1;--bg2:#EEEBE6;--card:rgba(255,255,255,.55);--sheet:rgba(252,250,247,.88);
+  --field:rgba(255,255,255,.62);--tx:#161c1a;--mu:#5c6662;--ac:#0F6B5F;--onac:#fff;
+  --rd:#d03a2a;--onrd:#fff;--bd:rgba(22,28,26,.08);--gb:rgba(255,255,255,.78);
+  --hi:rgba(255,255,255,.6);--spec:rgba(255,255,255,.92);--sh:rgba(15,40,35,.14);
+  --wall:rgba(22,28,26,.45);--door:#FF6B3D;--rs:rgba(255,255,255,.9);
+  --lbl:rgba(255,255,255,.55);--plate:rgba(255,255,255,.2);
+  --g1:rgba(15,107,95,.18);--g2:rgba(255,140,100,.18);--navon:rgba(15,107,95,.12);
+  --plusg:#b0432a;--blur:blur(28px) saturate(180%);
+  --radius:20px;--radius-sm:14px;--radius-xs:10px;
+  --nav-h:72px;--safe-b:env(safe-area-inset-bottom,0px);--safe-t:env(safe-area-inset-top,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#070a09;--bg2:#0c110f;--card:rgba(30,40,37,.5);--sheet:rgba(16,22,20,.9);
+    --field:rgba(255,255,255,.06);--tx:#eef2f0;--mu:#93a39e;--ac:#4fc4af;--onac:#04201a;
+    --rd:#ff6b5b;--onrd:#2a0804;--bd:rgba(255,255,255,.08);--gb:rgba(255,255,255,.12);
+    --hi:rgba(255,255,255,.1);--spec:rgba(255,255,255,.18);--sh:rgba(0,0,0,.5);
+    --wall:rgba(255,255,255,.45);--door:#ff8a5c;--rs:rgba(255,255,255,.28);
+    --lbl:rgba(0,0,0,.4);--plate:rgba(255,255,255,.04);
+    --g1:rgba(26,160,135,.32);--g2:rgba(255,140,100,.1);--navon:rgba(79,196,175,.14);
+    --plusg:#ffab8f;--blur:blur(36px) saturate(200%);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#070a09;--bg2:#0c110f;--card:rgba(30,40,37,.5);--sheet:rgba(16,22,20,.9);
+  --field:rgba(255,255,255,.06);--tx:#eef2f0;--mu:#93a39e;--ac:#4fc4af;--onac:#04201a;
+  --rd:#ff6b5b;--onrd:#2a0804;--bd:rgba(255,255,255,.08);--gb:rgba(255,255,255,.12);
+  --hi:rgba(255,255,255,.1);--spec:rgba(255,255,255,.18);--sh:rgba(0,0,0,.5);
+  --wall:rgba(255,255,255,.45);--door:#ff8a5c;--rs:rgba(255,255,255,.28);
+  --lbl:rgba(0,0,0,.4);--plate:rgba(255,255,255,.04);
+  --g1:rgba(26,160,135,.32);--g2:rgba(255,140,100,.1);--navon:rgba(79,196,175,.14);
+  --plusg:#ffab8f;--blur:blur(36px) saturate(200%);color-scheme:dark;
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;min-height:100dvh;overflow-x:hidden;
+  background:linear-gradient(165deg,var(--bg),var(--bg2)) fixed;
+  color:var(--tx);
+  font:16px/1.45 "Inter",-apple-system,"SF Pro Text",system-ui,sans-serif;
+  font-feature-settings:"cv11","ss03";
+  -webkit-font-smoothing:antialiased;
+  padding-top:var(--safe-t);
+  padding-bottom:calc(var(--nav-h) + var(--safe-b) + 12px);
+}
+body::before{
+  content:"";position:fixed;inset:-12%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(42% 32% at 10% 6%,var(--g1),transparent 70%),
+    radial-gradient(38% 30% at 92% 22%,var(--g2),transparent 70%),
+    radial-gradient(48% 36% at 30% 100%,var(--g1),transparent 72%);
+}
+
+main{max-width:720px;margin:0 auto;padding:16px 16px 8px;min-width:0}
 :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
 
-.card{position:relative;background:linear-gradient(180deg,var(--hi),transparent 42%),var(--card);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);border:1px solid var(--gb);border-radius:24px;padding:16px;margin-bottom:14px;box-shadow:inset 0 1px 0 var(--spec),0 12px 32px -14px var(--sh),0 1px 2px rgba(20,50,44,.05)}
-h2{font-size:19px;font-weight:700;letter-spacing:-.02em;text-transform:none;color:var(--tx);margin:0 0 10px}
-h3{font-size:24px;font-weight:700;letter-spacing:-.025em;margin:6px 0 12px}
-.modal h3{font-size:21px;margin-top:0}
-.path,.date{color:var(--mu)}.path{font-size:13.5px;line-height:1.5}
-.row{padding:12px 0}
-
-.card.hero{background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;text-align:center;padding:36px 0 18px;margin-bottom:6px}
-.hero>button{position:absolute!important;top:0;float:none!important;margin:0!important;width:44px;height:44px;padding:0;border-radius:50%}
+/* Cards */
+.card{
+  position:relative;
+  background:linear-gradient(180deg,var(--hi),transparent 40%),var(--card);
+  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+  border:1px solid var(--gb);
+  border-radius:var(--radius);
+  padding:16px 16px;
+  margin-bottom:12px;
+  box-shadow:inset 0 1px 0 var(--spec),0 10px 28px -12px var(--sh),0 1px 2px rgba(15,40,35,.04);
+}
+.card.hero{
+  background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;
+  text-align:center;padding:28px 0 12px;margin-bottom:4px;position:relative;
+}
+.hero>button{position:absolute!important;top:0;width:44px;height:44px;padding:0;border-radius:50%}
 .hero>button:nth-child(1){right:0}.hero>button:nth-child(2){right:52px}
-.clock{font-size:clamp(76px,25vw,128px);font-weight:700;letter-spacing:-.055em;line-height:.95;font-variant-numeric:tabular-nums;background:linear-gradient(180deg,var(--tx) 30%,color-mix(in srgb,var(--tx) 40%,transparent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.date{font-size:19px;font-weight:500;letter-spacing:-.01em;margin-top:10px}
 
-/* inputs */
-input,select,textarea{font:inherit;color:var(--tx)}
-input,select{padding:12px;border-radius:14px;border:1px solid var(--bd);background:var(--field);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .2s,box-shadow .25s}
-textarea{background:var(--field)!important;border:1px solid var(--bd)!important;border-radius:14px!important}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ac)!important;box-shadow:0 0 0 4px var(--g1)}
-input::placeholder{font-size:14px;color:var(--mu);opacity:.8}
-input[type=checkbox]{padding:0;background:none;box-shadow:none;accent-color:var(--ac);width:18px;height:18px}
+h2{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--mu);margin:0 0 12px}
+h3{font-size:22px;font-weight:700;letter-spacing:-.03em;margin:4px 0 14px}
+.modal h3{font-size:20px;margin-top:0}
 
-/* buttons: liquid press */
-button{position:relative;overflow:hidden;border:0;border-radius:14px;padding:11px 16px;font-weight:600;letter-spacing:-.005em;background:var(--ac) linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,0) 60%);color:var(--onac);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 6px 16px -8px var(--ac);transition:transform .5s cubic-bezier(.34,1.56,.64,1),filter .25s,box-shadow .25s;-webkit-tap-highlight-color:transparent}
-button:active{transform:scale(.94);filter:brightness(.93) saturate(1.15);transition-duration:.1s}
-@media(hover:hover){button:hover{filter:brightness(1.06)}button:active{filter:brightness(.93) saturate(1.15)}}
-button.g{background:var(--field) linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,0));color:var(--tx);border:1px solid var(--gb);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);box-shadow:inset 0 1px 0 var(--spec),0 4px 12px -8px var(--sh)}
-button.r{background:rgba(212,64,47,.12);color:var(--rd);border:1px solid rgba(212,64,47,.25);box-shadow:none}
+.clock{
+  font-size:clamp(64px,22vw,112px);font-weight:700;letter-spacing:-.06em;line-height:.92;
+  font-variant-numeric:tabular-nums;
+  background:linear-gradient(180deg,var(--tx) 35%,color-mix(in srgb,var(--tx) 35%,transparent));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+}
+.date{font-size:17px;font-weight:500;letter-spacing:-.01em;margin-top:8px;color:var(--mu)}
+.path{color:var(--mu);font-size:13.5px;line-height:1.45}
+.warn{color:var(--rd)}
+
+/* Form controls */
+input,select,textarea,button{font:inherit;color:var(--tx)}
+input,select,textarea{
+  width:100%;padding:12px 14px;border-radius:var(--radius-sm);
+  border:1px solid var(--bd);background:var(--field);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  margin-bottom:8px;transition:border-color .2s,box-shadow .25s;
+}
+textarea{resize:vertical;min-height:80px}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:var(--ac)!important;box-shadow:0 0 0 4px var(--g1);
+}
+input::placeholder{color:var(--mu);opacity:.75;font-size:14.5px}
+input[type=checkbox]{width:20px;height:20px;padding:0;margin:0;accent-color:var(--ac);background:none;box-shadow:none}
+
+/* Buttons */
+button{
+  position:relative;overflow:hidden;border:0;border-radius:var(--radius-sm);
+  padding:12px 16px;font-weight:600;letter-spacing:-.01em;
+  background:var(--ac) linear-gradient(180deg,rgba(255,255,255,.22),transparent 55%);
+  color:var(--onac);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 16px -8px var(--ac);
+  cursor:pointer;
+  transition:transform .45s cubic-bezier(.34,1.56,.64,1),filter .2s,box-shadow .2s;
+  min-height:44px;
+}
+button:active{transform:scale(.96);filter:brightness(.94);transition-duration:.08s}
+@media(hover:hover){button:hover{filter:brightness(1.05)}}
+button.g{
+  background:var(--field) linear-gradient(180deg,rgba(255,255,255,.28),transparent);
+  color:var(--tx);border:1px solid var(--gb);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
+  box-shadow:inset 0 1px 0 var(--spec),0 3px 10px -6px var(--sh);
+}
+button.r{background:rgba(208,58,42,.12);color:var(--rd);border:1px solid rgba(208,58,42,.22);box-shadow:none}
 .modal button.r{background:var(--rd);color:var(--onrd);border-color:transparent}
-.chips{gap:8px}.chips button{padding:8px 14px}
-button.plus{background:linear-gradient(180deg,#FFC9B2,#FFA687);color:#4a1a0c;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 6px 16px -8px #FF8F6B;animation:pulse 3.2s ease-in-out infinite}
-button.plus.g{background:var(--field);color:var(--plusg);border:1px solid var(--gb)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{padding:9px 14px;border-radius:99px;min-height:40px}
+button.plus{
+  background:linear-gradient(180deg,#FFC9B2,#FFA687);color:#4a1a0c;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 6px 16px -8px #FF8F6B;
+  animation:pulse 3.2s ease-in-out infinite;
+}
+button.plus.g{background:var(--field);color:var(--plusg);border:1px solid var(--gb);animation:none}
 button.plus:active{animation:none}
-@keyframes pulse{0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 6px 16px -8px #FF8F6B,0 0 0 0 rgba(255,143,107,.45)}60%{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 6px 16px -8px #FF8F6B,0 0 0 11px rgba(255,143,107,0)}}
-.lq{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.6),rgba(255,255,255,0) 65%);transform:scale(0);animation:lq .6s ease-out both}
+@keyframes pulse{
+  0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 6px 16px -8px #FF8F6B,0 0 0 0 rgba(255,143,107,.4)}
+  55%{box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 6px 16px -8px #FF8F6B,0 0 0 10px rgba(255,143,107,0)}
+}
+.lq{position:absolute;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.55),transparent 65%);
+  transform:scale(0);animation:lq .55s ease-out both}
 @keyframes lq{to{transform:scale(1);opacity:0}}
 
-/* nav: floating glass */
-nav{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto;gap:4px;padding:6px;border:1px solid var(--gb);border-radius:30px;background:linear-gradient(180deg,var(--hi),transparent 60%),var(--card);-webkit-backdrop-filter:blur(28px) saturate(200%);backdrop-filter:blur(28px) saturate(200%);box-shadow:inset 0 1px 0 var(--spec),0 16px 40px -12px var(--sh);z-index:5}
-nav button{flex:1;border-radius:24px;background:none;border:0;box-shadow:none;color:var(--mu);padding:12px 2px;font-size:12.5px;letter-spacing:-.02em;white-space:nowrap;font-weight:600;-webkit-backdrop-filter:none;backdrop-filter:none}
+/* Rows & lists */
+.row{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:12px 0;border-bottom:1px solid var(--bd);min-width:0;
+}
+.row:last-child{border:0}
+.row>*{min-width:0}
+.row button{flex-shrink:0}
+
+/* Bottom nav — floating glass */
+nav{
+  position:fixed;left:12px;right:12px;bottom:calc(10px + var(--safe-b));
+  max-width:560px;margin:0 auto;z-index:5;
+  display:flex;gap:4px;padding:6px;
+  border:1px solid var(--gb);border-radius:28px;
+  background:linear-gradient(180deg,var(--hi),transparent 55%),var(--card);
+  -webkit-backdrop-filter:blur(30px) saturate(200%);backdrop-filter:blur(30px) saturate(200%);
+  box-shadow:inset 0 1px 0 var(--spec),0 14px 36px -10px var(--sh);
+}
+nav button{
+  flex:1;border-radius:22px;background:none;border:0;box-shadow:none;
+  color:var(--mu);padding:11px 2px 9px;font-size:11px;font-weight:600;
+  letter-spacing:-.02em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  display:flex;flex-direction:column;align-items:center;gap:2px;min-height:52px;
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+}
 nav button.on{background:var(--navon);color:var(--ac);box-shadow:inset 0 1px 0 var(--spec)}
 
-/* modal + toast */
-.modal{background:rgba(12,22,19,.32);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);animation:fade .25s both}
-.modal>div{background:linear-gradient(180deg,var(--hi),transparent 30%),var(--sheet);-webkit-backdrop-filter:blur(40px) saturate(190%);backdrop-filter:blur(40px) saturate(190%);border:1px solid var(--gb);border-bottom:0;border-radius:30px 30px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px));box-shadow:inset 0 1px 0 var(--spec),0 -20px 60px -20px rgba(0,0,0,.35);animation:sheet .5s cubic-bezier(.2,.9,.25,1.05) both}
+/* Modal */
+.modal{
+  position:fixed;inset:0;z-index:9;
+  background:rgba(10,18,16,.38);
+  -webkit-backdrop-filter:blur(12px) saturate(140%);backdrop-filter:blur(12px) saturate(140%);
+  display:flex;align-items:flex-end;justify-content:center;
+  animation:fade .22s both;
+}
+.modal>div{
+  width:100%;max-width:560px;max-height:92dvh;overflow:auto;
+  background:linear-gradient(180deg,var(--hi),transparent 28%),var(--sheet);
+  -webkit-backdrop-filter:blur(40px) saturate(190%);backdrop-filter:blur(40px) saturate(190%);
+  border:1px solid var(--gb);border-bottom:0;
+  border-radius:28px 28px 0 0;
+  padding:20px 18px calc(20px + var(--safe-b));
+  box-shadow:inset 0 1px 0 var(--spec),0 -16px 48px -16px rgba(0,0,0,.3);
+  animation:sheet .4s cubic-bezier(.2,.9,.25,1.05) both;
+}
 @keyframes fade{from{opacity:0}}
-@keyframes sheet{from{transform:translateY(40px);opacity:0}}
-#tt{background:rgba(24,32,30,.8)!important;color:#fff!important;-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.14);border-radius:20px!important;bottom:calc(92px + env(safe-area-inset-bottom,0px))!important;left:50%!important;right:auto!important;transform:translateX(-50%);width:min(520px,calc(100% - 24px));animation:toast .45s cubic-bezier(.2,.9,.3,1.2) both}
-@keyframes toast{from{transform:translate(-50%,16px) scale(.95);opacity:0}}
+@keyframes sheet{from{transform:translateY(36px);opacity:0}}
 
-/* floor plan: glass rooms */
-.card svg{overflow:visible}
-svg polygon[onclick]{stroke:var(--rs)!important;stroke-width:2.5!important;stroke-dasharray:none!important;stroke-linejoin:round!important;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 2px 6px rgba(26,122,109,.14));transition:filter .35s,transform .5s cubic-bezier(.34,1.56,.64,1)}
-svg polygon[onclick]:hover{filter:brightness(1.07) drop-shadow(0 0 10px rgba(26,122,109,.45))}
-svg polygon[onclick]:active{transform:scale(.97);filter:url(#lq) brightness(1.16) drop-shadow(0 0 18px rgba(26,122,109,.75));transition-duration:.12s}
+/* Toast */
+#tt{
+  position:fixed!important;left:50%!important;right:auto!important;
+  bottom:calc(var(--nav-h) + var(--safe-b) + 16px)!important;
+  transform:translateX(-50%);width:min(480px,calc(100% - 24px));
+  background:rgba(20,28,26,.88)!important;color:#fff!important;
+  -webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(255,255,255,.12);border-radius:18px!important;
+  padding:12px 16px;z-index:8;display:none;
+  animation:toast .4s cubic-bezier(.2,.9,.3,1.15) both;
+}
+@keyframes toast{from{transform:translate(-50%,14px) scale(.96);opacity:0}}
+
+/* Empty states */
+.empty-state{text-align:center;padding:32px 16px;color:var(--mu)}
+.empty-state .big{font-size:44px;line-height:1;margin-bottom:10px;opacity:.9}
+.empty-state p{margin:0 0 14px;font-size:15px;line-height:1.45}
+.empty-state button{margin-top:2px}
+
+/* Misc */
+.sticky-search{position:sticky;top:0;z-index:4;padding-top:4px;margin-top:-4px;
+  background:linear-gradient(180deg,var(--bg) 55%,transparent);backdrop-filter:blur(10px)}
+.exp-week{border-left:3px solid var(--rd);padding-left:10px}
+.notif-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;
+  border-radius:99px;background:var(--navon);color:var(--ac);font-weight:600;vertical-align:middle}
+.storage-warn{background:rgba(208,58,42,.1);border:1px solid rgba(208,58,42,.22);
+  border-radius:var(--radius-sm);padding:12px;margin-bottom:12px;color:var(--rd);font-size:13.5px}
+img.th{width:48px;height:48px;object-fit:cover;border-radius:12px;float:left;margin-right:10px;cursor:pointer}
 .hl{animation:glowp 1.6s ease-in-out infinite}
-@keyframes glowp{0%,100%{filter:brightness(1) drop-shadow(0 0 4px rgba(26,122,109,.2))}50%{filter:brightness(1.3) drop-shadow(0 0 18px rgba(26,122,109,.9))}}
+@keyframes glowp{0%,100%{filter:brightness(1) drop-shadow(0 0 4px rgba(15,107,95,.2))}50%{filter:brightness(1.25) drop-shadow(0 0 16px rgba(15,107,95,.85))}}
+.row.bump{animation:bump .65s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes bump{0%{transform:scale(.93);opacity:0;background:rgba(15,107,95,.2)}60%{transform:scale(1.02)}100%{transform:none;background:transparent}}
+.okr{position:fixed;width:18px;height:18px;transform:translate(-50%,-50%);border-radius:50%;
+  border:1.5px solid var(--ac);background:radial-gradient(circle,var(--g1),transparent 70%);
+  pointer-events:none;z-index:20;animation:okr .8s cubic-bezier(.2,.7,.3,1) both}
+@keyframes okr{from{width:18px;height:18px;opacity:.95}to{width:280px;height:280px;opacity:0}}
+.stag>.row{animation:rise .4s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*40ms)}
+#app.enter>*{animation:rise .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k,0)*45ms)}
+@keyframes rise{from{opacity:0;transform:translateY(8px) scale(.988)}}
+.row.fly{animation:fly .4s cubic-bezier(.5,0,.75,0) both;animation-delay:calc(var(--i,0)*28ms)}
+@keyframes fly{to{transform:translateX(32%) scale(.96);opacity:0}}
+
+/* SVG floor plan */
+.card svg{overflow:visible}
+svg polygon[onclick]{
+  stroke:var(--rs)!important;stroke-width:2.5!important;stroke-dasharray:none!important;stroke-linejoin:round!important;
+  transform-box:fill-box;transform-origin:center;
+  filter:drop-shadow(0 2px 5px rgba(15,107,95,.12));
+  transition:filter .3s,transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+svg polygon[onclick]:hover{filter:brightness(1.06) drop-shadow(0 0 8px rgba(15,107,95,.4))}
+svg polygon[onclick]:active{transform:scale(.97);filter:url(#lq) brightness(1.12) drop-shadow(0 0 14px rgba(15,107,95,.7));transition-duration:.1s}
 svg polyline{stroke:var(--wall)!important;stroke-linecap:round!important;stroke-linejoin:round!important}
 svg line{stroke-linecap:round!important}
 svg line:not([style*="#d11"]){stroke:var(--wall)!important}
@@ -101,64 +261,231 @@ svg rect{stroke:var(--wall)!important;stroke-width:3!important;rx:10px;ry:10px}
 svg rect[onclick]{fill:var(--plate)!important}
 svg text{font-family:inherit;letter-spacing:-.01em;paint-order:stroke;stroke:var(--lbl);stroke-width:3px;stroke-linejoin:round}
 
-/* micro-interactions */
-.row.bump{animation:bump .7s cubic-bezier(.34,1.56,.64,1) both}
-@keyframes bump{0%{transform:scale(.92);opacity:0;background:rgba(26,122,109,.25)}60%{transform:scale(1.03);opacity:1}100%{transform:none;background:transparent}}
-.okr{position:fixed;width:20px;height:20px;transform:translate(-50%,-50%);border-radius:50%;border:1.5px solid var(--ac);background:radial-gradient(circle,var(--g1),transparent 70%);pointer-events:none;z-index:20;animation:okr .85s cubic-bezier(.2,.7,.3,1) both}
-@keyframes okr{from{width:20px;height:20px;opacity:.95}to{width:300px;height:300px;opacity:0}}
-.stag>.row{animation:rise .42s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*45ms)}
-#app.enter>*{animation:rise .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k,0)*50ms)}
-@keyframes rise{from{opacity:0;transform:translateY(10px) scale(.985)}}
-.row.fly{animation:fly .45s cubic-bezier(.5,0,.75,0) both;animation-delay:calc(var(--i,0)*30ms)}
-@keyframes fly{to{transform:translateX(36%) scale(.95);opacity:0}}
-img.th{border-radius:12px}
-@media(min-width:900px){.modal>div{border-radius:30px;border-bottom:1px solid var(--gb)}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-@media print{body::before{display:none}}
-@media(min-width:900px){
-main{max-width:1100px}
-main.v-home,main.v-room{display:grid;grid-template-columns:1fr 1fr;column-gap:14px;align-items:start}
-main.v-home>button,main.v-room>button,main.v-room>h3,main.v-room>.bar{grid-column:1/-1}
-main.v-home>.card:first-child{grid-column:1/-1}
-main.v-room>.card:last-of-type{grid-column:1/-1}
-main.v-plan{max-width:920px}main.v-shelf,main.v-shop{max-width:780px}
-.modal{align-items:center}.modal>div{border-radius:18px;max-width:560px}
-.card{padding:16px}
-}
-/* furniture on plan */
+/* Furniture layer */
 #fl{pointer-events:none}
 #fl [data-f]{pointer-events:all;cursor:pointer}
 #fl text{pointer-events:none;paint-order:stroke;stroke:var(--lbl);stroke-linejoin:round}
-#app.fe #fl [data-f],#app.fe #fl [data-h]{pointer-events:all;touch-action:none;cursor:grab}#app.fe #fl [data-a]{pointer-events:all;cursor:pointer;touch-action:none}#app.fe svg{touch-action:none}
+#app.fe #fl [data-f],#app.fe #fl [data-h]{pointer-events:all;touch-action:none;cursor:grab}
+#app.fe #fl [data-a]{pointer-events:all;cursor:pointer;touch-action:none}
+#app.fe svg{touch-action:none;-webkit-user-select:none;user-select:none}
 #app.fe #fl [data-h]{cursor:pointer}
 #app.fe svg rect[onclick]{pointer-events:none}
-#app.fe svg{-webkit-user-select:none;user-select:none}
-.fsticky{position:sticky!important;top:6px;z-index:6;background:linear-gradient(180deg,var(--hi),transparent 42%),var(--bg)!important}
-/* zoom / μικρές οθόνες */
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{overflow-x:hidden}
-main{min-width:0}
-.chips button,.row button{white-space:normal;max-width:100%}
-.row>*{min-width:0}
-input,select,textarea{max-width:100%}
-nav button{min-width:0;overflow:hidden;text-overflow:ellipsis}
-@media(max-width:360px){nav{left:4px;right:4px;padding:4px;gap:2px}nav button{font-size:10.5px;padding:11px 0;letter-spacing:-.04em}main{padding:14px 8px}.card{padding:12px;border-radius:20px}h3{font-size:20px}}
-@media(max-width:240px){nav button{font-size:9px}.clock{font-size:64px}}
+.fsticky{position:sticky!important;top:6px;z-index:6;
+  background:linear-gradient(180deg,var(--hi),transparent 42%),var(--bg)!important}
 
-/* ===== v3 improvements ===== */
-.sticky-search{position:sticky;top:0;z-index:4;padding-top:6px;margin-top:-6px;background:linear-gradient(180deg,var(--bg) 60%,transparent);backdrop-filter:blur(12px)}
-.empty-state{text-align:center;padding:28px 16px;color:var(--mu)}
-.empty-state .big{font-size:42px;line-height:1;margin-bottom:10px;opacity:.85}
-.empty-state p{margin:0 0 14px;font-size:15px;line-height:1.45}
-.empty-state button{margin-top:4px}
-.exp-week{border-left:3px solid var(--rd);padding-left:10px}
-.notif-badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:2px 8px;border-radius:99px;background:var(--navon);color:var(--ac);font-weight:600}
-#fl [data-h],#fl [data-a] rect{/* larger touch targets on mobile */}
-@media(max-width:600px){
-  #fl [data-h]{r:16px}
-  #app.fe #fl [data-a] rect{width:42px;height:42px}
+.chips button,.row button{white-space:normal;max-width:100%}
+input,select,textarea{max-width:100%}
+
+/* Print */
+#pr{display:none;white-space:pre-wrap;font:13px monospace;color:#000;background:#fff}
+@media print{
+  main,nav,#md,#tt,body::before{display:none!important}
+  #pr{display:block!important}body{background:#fff;padding:0}
 }
-.storage-warn{background:rgba(212,64,47,.1);border:1px solid rgba(212,64,47,.25);border-radius:14px;padding:12px;margin-bottom:12px;color:var(--rd);font-size:14px}
+
+/* ===== Responsive ===== */
+/* Phone small */
+@media(max-width:380px){
+  main{padding:12px 10px}
+  .card{padding:14px;border-radius:18px}
+  h3{font-size:19px}
+  nav{left:6px;right:6px;padding:5px;gap:2px}
+  nav button{font-size:10px;padding:10px 0 8px;min-height:48px}
+  .clock{font-size:58px}
+}
+/* Tablet */
+@media(min-width:700px){
+  main{max-width:820px;padding:20px 20px}
+  .card{padding:18px}
+  nav{max-width:520px}
+}
+/* Desktop */
+@media(min-width:960px){
+  main{max-width:1100px;padding:24px 24px}
+  main.v-home,main.v-room,main.v-menu{
+    display:grid;grid-template-columns:1fr 1fr;column-gap:16px;align-items:start;
+  }
+  main.v-home>button,main.v-room>button,main.v-room>h3,main.v-room>.bar,
+  main.v-menu>h3,main.v-home>.card.hero,main.v-home>.sticky-search{
+    grid-column:1/-1;
+  }
+  main.v-home>.card:first-of-type{grid-column:1/-1}
+  main.v-plan{max-width:960px}
+  main.v-shelf,main.v-shop,main.v-work{max-width:720px;margin-left:auto;margin-right:auto}
+  .modal{align-items:center}
+  .modal>div{border-radius:24px;border-bottom:1px solid var(--gb);max-width:520px;max-height:85vh}
+  nav{bottom:18px;max-width:480px}
+  body{padding-bottom:calc(var(--nav-h) + 28px)}
+}
+@media(min-width:1200px){
+  main{max-width:1180px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* ===== Premium v4 layer ===== */
+.fab{
+  position:fixed;right:max(16px, calc(50% - 360px + 16px));bottom:calc(var(--nav-h) + var(--safe-b) + 14px);
+  width:58px;height:58px;border-radius:50%;z-index:6;padding:0;font-size:28px;line-height:1;
+  background:linear-gradient(145deg,#FFB894,#FF8F6B);color:#3d1408;font-weight:700;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 10px 28px -6px rgba(255,143,107,.65),0 4px 12px rgba(0,0,0,.12);
+  display:flex;align-items:center;justify-content:center;
+  animation:none;border:0;
+}
+.fab:active{transform:scale(.92)}
+@media(min-width:960px){.fab{right:max(24px, calc(50% - 550px + 24px))}}
+
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;
+}
+.stat{
+  background:linear-gradient(180deg,var(--hi),transparent 50%),var(--card);
+  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+  border:1px solid var(--gb);border-radius:16px;padding:12px 8px;text-align:center;
+  box-shadow:inset 0 1px 0 var(--spec);
+}
+.stat b{display:block;font-size:22px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.stat span{font-size:11px;color:var(--mu);font-weight:500}
+.stat.warn b{color:var(--rd)}
+.stat.accent b{color:var(--ac)}
+
+.menu-row{
+  display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid var(--bd);
+  cursor:pointer;border-radius:12px;margin:0 -4px;padding-left:8px;padding-right:8px;
+  transition:background .15s;
+}
+.menu-row:last-child{border:0}
+.menu-row:active{background:var(--navon)}
+.menu-ico{
+  width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:22px;background:var(--navon);flex-shrink:0;
+}
+.menu-row .chev{color:var(--mu);font-size:18px;opacity:.5}
+
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.welcome{
+  background:linear-gradient(135deg,rgba(15,107,95,.12),rgba(255,143,107,.1));
+  border:1px solid var(--gb);
+}
+
+@media(max-width:400px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat b{font-size:20px}
+}
+
+
+/* ========== REVOLUTION UI ========== */
+.item-card{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:14px;margin:0 -6px 8px;border-radius:16px;
+  border:1px solid transparent;
+  transition:background .15s,border-color .15s,transform .2s;
+}
+.item-card:active{transform:scale(.985)}
+.item-card:hover{background:var(--navon);border-color:var(--gb)}
+.item-card .ic-body{flex:1;min-width:0}
+.item-card .ic-name{font-weight:650;font-size:16px;letter-spacing:-.02em;line-height:1.25}
+.item-card .ic-meta{font-size:13px;color:var(--mu);margin-top:3px;line-height:1.4}
+.item-card .ic-actions{display:flex;gap:4px;flex-shrink:0;opacity:.85}
+.item-card .ic-actions button{padding:8px 10px;min-height:40px;border-radius:12px}
+.item-card .badge{
+  display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;
+  background:var(--navon);color:var(--ac);margin-left:6px;vertical-align:middle;
+}
+.item-card .badge.hot{background:rgba(208,58,42,.12);color:var(--rd)}
+
+.spotlight{
+  position:relative;
+}
+.spotlight input{
+  font-size:17px!important;padding:16px 16px 16px 48px!important;
+  border-radius:18px!important;font-weight:500;
+  border:1.5px solid var(--gb)!important;
+  box-shadow:0 4px 20px -8px var(--sh);
+}
+.spotlight .sp-ico{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  font-size:18px;pointer-events:none;opacity:.7;z-index:1;
+}
+
+.today-feed .feed-item{
+  display:flex;align-items:center;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--bd);cursor:pointer;
+}
+.today-feed .feed-item:last-child{border:0}
+.today-feed .feed-ico{
+  width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:18px;background:var(--navon);flex-shrink:0;
+}
+.today-feed .feed-ico.hot{background:rgba(208,58,42,.12)}
+
+.hero-title{
+  font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--mu);margin-bottom:4px;
+}
+.section-head{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;
+}
+.section-head h2{margin:0}
+
+.pill-nav{
+  display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.pill-nav::-webkit-scrollbar{display:none}
+.pill-nav button{
+  flex-shrink:0;padding:8px 14px;border-radius:99px;font-size:13px;min-height:36px;
+}
+
+.cmdk{
+  position:fixed;inset:0;z-index:30;display:none;
+  background:rgba(8,14,12,.45);backdrop-filter:blur(12px);
+  align-items:flex-start;justify-content:center;padding:12vh 16px 16px;
+}
+.cmdk.open{display:flex;animation:fade .2s both}
+.cmdk-box{
+  width:min(560px,100%);background:var(--sheet);border:1px solid var(--gb);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 24px 64px -16px rgba(0,0,0,.4);
+  -webkit-backdrop-filter:blur(40px) saturate(180%);backdrop-filter:blur(40px) saturate(180%);
+}
+.cmdk-box input{
+  border:0!important;border-radius:0!important;border-bottom:1px solid var(--bd)!important;
+  padding:18px 18px!important;font-size:17px!important;margin:0!important;
+  background:transparent!important;box-shadow:none!important;
+}
+.cmdk-results{max-height:50vh;overflow:auto;padding:8px}
+.cmdk-item{
+  display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;cursor:pointer;
+}
+.cmdk-item:hover,.cmdk-item.active{background:var(--navon)}
+.cmdk-item b{font-weight:600}
+.cmdk-empty{padding:24px;text-align:center;color:var(--mu)}
+
+.recent-chip{
+  display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:99px;
+  background:var(--field);border:1px solid var(--gb);font-size:13px;font-weight:500;
+  margin:0 6px 6px 0;cursor:pointer;
+}
+.recent-chip:active{transform:scale(.96)}
+
+.home-actions{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;
+}
+.home-actions button{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:14px 8px;border-radius:16px;font-size:12px;font-weight:600;
+  min-height:0;
+}
+.home-actions button span.ico{font-size:22px;line-height:1}
+
+@media(max-width:400px){
+  .home-actions{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lq" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="7"/></filter></svg>
 <main id="app"></main>
@@ -169,10 +496,10 @@ var D=[['Δωμάτιο 1'],['Δωμάτιο 2'],['Δωμάτιο 3'],['Δωμά
 var CATS=['Τρόφιμα','Φάρμακα','Εργαλεία','Εποχιακά'];
 var S,view='home',cur=0,q='',catF='';
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
-function defaults(){return{v:3,rooms:D.map(function(r,i){return{n:r[0],h:i>26?6:i>25?4:i>23?5:i>21?4:i>20?0:i>14?3:i>8?2:0,f:[{id:uid(),n:'Ντουλάπα 1',s:['Ράφι 1','Ράφι 2','Ράφι 3']}]}}),items:[],shop:[]}}
+function defaults(){return{v:4,rooms:D.map(function(r,i){return{n:r[0],h:i>26?6:i>25?4:i>23?5:i>21?4:i>20?0:i>14?3:i>8?2:0,f:[{id:uid(),n:'Ντουλάπα 1',s:['Ράφι 1','Ράφι 2','Ράφι 3']}]}}),items:[],shop:[]}}
 function load(){try{var v=localStorage.getItem('spiti');if(v){var o=JSON.parse(v);if(!o.v)o.v=1;return o}}catch(e){}return defaults()}
 function autoShop(){try{S.items.forEach(function(i){var low=i.m!==''&&i.m!=null&&i.q!==''&&i.q!=null&&+i.q<+i.m;if(low&&!i.w){if(!S.shop.some(function(x){return x.t==i.n&&!x.d}))S.shop.push({t:i.n,d:false,auto:1});i.w=1}else if(!low)i.w=0})}catch(e){}}
-function save(){autoShop();S.v=3;try{localStorage.setItem('spiti',JSON.stringify(S))}catch(e){toast('Δεν χωράει άλλη αποθήκευση — κάνε εξαγωγή αντιγράφου και αφαίρεσε φωτογραφίες',1)}}
+function save(){autoShop();S.v=4;try{localStorage.setItem('spiti',JSON.stringify(S))}catch(e){toast('Δεν χωράει άλλη αποθήκευση — κάνε εξαγωγή αντιγράφου και αφαίρεσε φωτογραφίες',1)}}
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 D=[['Σαλόνι'],['Κουζίνα'],['Μπάνιο'],['Διάδρομος'],['Διάδρομος 2'],['Αποθήκη'],['Διάδρομος πάνω'],['Διάδρομος είσοδος'],['Διάδρομος 2 κάτω'],['Χώρος 1'],['Χώρος 2'],['Χώρος 3'],['Χώρος 4'],['Χώρος 5'],['Χώρος 6'],['Χώρος 1'],['Χώρος 2'],['Χώρος 3'],['Χώρος 4'],['Χώρος 5'],['Χώρος 6'],['Νέος χώρος'],['Χώρος 1'],['Χώρος 2'],['Χώρος 1'],['Χώρος 2'],['Χώρος 3'],['Χώρος 1'],['Χώρος 2'],['Χώρος 3'],['Χώρος 4'],['Χώρος 5'],['Χώρος 6'],['Χώρος 7'],['Χώρος 8']];function fixRooms(){var T=D.length;if(S.rooms.length>T&&S.rooms.slice(T).some(function(r){return r&&r.poly}))return;if(S.rooms.length>=3&&S.rooms.length<T){for(var k=S.rooms.length;k<T;k++)S.rooms.push({n:D[k][0],h:k>26?6:k>25?4:k>23?5:k>21?4:k>20?0:k>14?3:k>8?2:0,f:[{id:uid(),n:'Ντουλάπα 1',s:['Ράφι 1','Ράφι 2','Ράφι 3']}]});save()}else if(S.rooms.length>T&&S.rooms.length<=T+3){S.items.forEach(function(i){if(i.r>=T)i.r=18});S.rooms.length=T;save()}else if(S.rooms.length!=T){var sh0=S.shop;S=defaults();S.shop=sh0}}S=load();fixRooms();
 function fobj(r,fid){return S.rooms[r].f.filter(function(x){return x.id==fid})[0]}
@@ -184,28 +511,92 @@ var hs=1;
 function path(it){var r=S.rooms[it.r];if(!r)return'?';var f=fobj(it.r,it.f);return esc(rn(r))+(f?' ➔ '+esc(f.n)+(it.s?' ➔ '+esc(it.s):''):'')}
 function cats(){var c=CATS.concat(S.cats||[]);S.items.forEach(function(i){tg(i).forEach(function(t){if(c.indexOf(t)<0)c.push(t)})});return c}function tg(i){return(i.c||'').split(',').map(function(x){return x.trim()}).filter(Boolean)}
 function days(d){return Math.ceil((new Date(d)-new Date(new Date().toDateString()))/864e5)}
-var lastAdd='';function itemRow(it){var T=tg(it).join(', ');return '<div class="row'+(it.id==lastAdd?' bump':'')+'"><div>'+(it.p?'<img class="th" src="'+it.p+'" onclick="zoom(\''+it.id+'\')">':'')+'<b>'+esc(it.n)+'</b>'+(it.q!==''&&it.q!=null?' · '+esc(it.q)+' '+esc(it.u||''):'')+(T?' · '+esc(T):'')+(it.e?' <span class="'+(days(it.e)<=7?'warn':'')+'">⏳ '+it.e+'</span>':'')+(it.lost?' <span class="warn">❓</span>':'')+'<div class="path">'+path(it)+'</div>'+(it.prev?'<div class="path">Τελευταία το είδα: '+it.prev+'</div>':'')+'</div><div style="display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end"><button class="g" onclick="showWhere(\''+it.id+'\')">📍</button><button class="g" onclick="toggleLost(\''+it.id+'\')">❓</button><button class="g" onclick="itemForm(\''+it.id+'\')">✎</button><button class="r" onclick="delItem(\''+it.id+'\')">✕</button></div></div>'}
+var lastAdd='';
+function pushRecent(id){S.recent=S.recent||[];S.recent=([id].concat(S.recent.filter(function(x){return x!=id}))).slice(0,8);save()}
+
+function itemRow(it){
+  var T=tg(it).join(', ');
+  var d=it.e?days(it.e):null;
+  var hot=d!=null&&d<=7;
+  var meta=[];
+  if(it.q!==''&&it.q!=null)meta.push(esc(it.q)+(it.u?' '+esc(it.u):''));
+  if(T)meta.push(esc(T));
+  if(it.e)meta.push('<span class="'+(hot?'warn':'')+'">⏳ '+it.e+(d!=null?' · '+d+'μ':'')+'</span>');
+  if(it.lost)meta.push('<span class="warn">❓ Χαμένο</span>');
+  return '<div class="item-card'+(it.id==lastAdd?' bump':'')+'">'+
+    (it.p?'<img class="th" src="'+it.p+'" onclick="event.stopPropagation();zoom(\''+it.id+'\')" style="float:none;margin:0">':'')+
+    '<div class="ic-body" onclick="itemForm(\''+it.id+'\')">'+
+      '<div class="ic-name">'+esc(it.n)+(hot?'<span class="badge hot">λήγει</span>':'')+(it.lost?'<span class="badge hot">χαμένο</span>':'')+'</div>'+
+      '<div class="ic-meta">'+path(it)+'</div>'+
+      (meta.length?'<div class="ic-meta">'+meta.join(' · ')+'</div>':'')+
+      (it.prev?'<div class="ic-meta">Πριν: '+it.prev+'</div>':'')+
+    '</div>'+
+    '<div class="ic-actions">'+
+      '<button class="g" onclick="event.stopPropagation();showWhere(\''+it.id+'\')" title="Πού είναι">📍</button>'+
+      '<button class="g" onclick="event.stopPropagation();itemForm(\''+it.id+'\')" title="Επεξεργασία">✎</button>'+
+    '</div></div>';
+}
 function render(){
  var h='';
  if(view=='home'){
   var res=S.items.filter(function(i){return (q&&i.n.toLowerCase().indexOf(q.toLowerCase())>=0)||(catF&&tg(i).indexOf(catF)>=0)});
   var ex=S.items.filter(function(i){return i.e&&days(i.e)<=30}).sort(function(a,b){return a.e<b.e?-1:1});
-  h+='<div class="card hero"><button class="g" style="float:right;margin-left:6px" aria-label="Εκτύπωση" onclick="exportUI()">📄</button><button class="g" style="float:right" aria-label="Φωτεινό / σκοτεινό" onclick="toggleTheme()">🌓</button><div class="clock" id="clk"></div><div class="date" id="dt"></div></div>';
-  if(!S.seen)h+='<div class="card"><h2>Καλώς ήρθες</h2><div class="path">1) Στην Κάτοψη πάτα έναν χώρο και φτιάξε έπιπλα και ράφια. 2) Πρόσθεσε αντικείμενα με το +. 3) Ψάξε από την Αρχική.</div><button onclick="S.seen=1;save();render()" style="margin-top:8px">Κατάλαβα</button></div>';
-  h+='<button style="width:100%;font-size:18px;padding:14px;margin-bottom:12px" onclick="quickAdd()">+ Γρήγορη Προσθήκη</button>';h+='<button class="g" style="width:100%;margin-bottom:12px" onclick="bulk()">🔁 Μαζική μεταφορά (π.χ. εποχιακά)</button>';h+='<button class="g" style="width:100%;margin-bottom:12px" onclick="recipes()">🍳 Τι να μαγειρέψω;</button>';
-  var lost=S.items.filter(function(i){return i.lost});if(lost.length)h+='<div class="card"><h2>Προς έλεγχο</h2>'+lost.map(itemRow).join('')+'</div>';
-  h+='<div class="card sticky-search"><input id="q" placeholder="🔍 Πού είναι το...;" value="'+esc(q)+'" oninput="q=this.value;catF=\'\';keep()">';
-  h+='<div class="chips">'+cats().map(function(c){return '<button class="'+(catF==c?'':'g')+'" onclick="catF=catF==\''+esc(c)+'\'?\'\':\''+esc(c)+'\';q=\'\';render()">'+esc(c)+'</button>'}).join('')+'<button onclick="addCat()">+ Κατηγορία</button></div>';
-  var nr=q?S.rooms.map(function(r,i){return{r:r,i:i}}).filter(function(o){return(o.r.note||'').toLowerCase().indexOf(q.toLowerCase())>=0}):[];if(q||catF)h+='<div class="stag" style="margin-top:8px">'+(res.length||nr.length?res.map(itemRow).join('')+nr.map(function(o){return '<div class="row"><span>📝 '+esc(o.r.n)+' (σημείωση)</span><button class="g" onclick="cur='+o.i+';view=\'room\';render()">›</button></div>'}).join(''):'<div class="empty-state"><div class="big">🔍</div><p>Δεν βρέθηκε τίποτα για «'+esc(q||catF)+'»</p><button class="g" onclick="q=\'\';catF=\'\';render()">Καθαρισμός</button></div>')+'</div>';
-  h+='</div>';
-  h+=dueCard();
-  var exWeek=ex.filter(function(i){return days(i.e)<=7});
-  h+='<div class="card"><h2>Λήγει σύντομα '+(exWeek.length?'<span class="notif-badge">'+exWeek.length+' αυτή την εβδομάδα</span>':'')+'</h2>'+(ex.length?ex.map(function(i){var d=days(i.e);return '<div class="row'+(d<=7?' exp-week':'')+'"><span>'+esc(i.n)+'</span><span class="'+(d<=7?'warn':'')+'">'+i.e+' ('+d+'μ)</span><button class="g" onclick="rebuy(\''+i.id+'\')">🛒 Αγόρασε ξανά</button></div>'}).join(''):'<div class="empty-state"><div class="big">⏳</div><p>Τίποτα δεν λήγει σύντομα</p></div>')+'</div>';
   var op=S.shop.filter(function(x){return!x.d});
-  h+='<div class="card"><h2>Λίστα αγορών</h2>'+(op.length?op.slice(0,5).map(function(x){return '<div class="row"><span>'+esc(x.t)+'</span></div>'}).join('')+(op.length>5?'<div class="path">+ '+(op.length-5)+' ακόμα → Λίστα</div>':''):'<div class="empty-state"><div class="big">🛒</div><p>Η λίστα είναι άδεια</p><button class="g" onclick="view=\'shop\';render()">Άνοιγμα λίστας</button></div>')+'</div>';
+  var lost=S.items.filter(function(i){return i.lost});
+  var exWeek=ex.filter(function(i){return days(i.e)<=7});
+  var hour=new Date().getHours();
+  var greet=hour<12?'Καλημέρα':hour<18?'Καλησπέρα':'Καληνύχτα';
+
+  h+='<div class="card hero"><button class="g" style="float:right;margin-left:6px" aria-label="Εκτύπωση" onclick="exportUI()">📄</button><button class="g" style="float:right" aria-label="Θέμα" onclick="toggleTheme()">🌓</button>';
+  h+='<div class="hero-title">'+greet+'</div><div class="clock" id="clk"></div><div class="date" id="dt"></div></div>';
+
+  if(!S.seen)h+='<div class="card welcome"><h2>Καλώς ήρθες 👋</h2><div class="path" style="margin-bottom:12px">Σε 2 λεπτά είσαι έτοιμος:<br>① Κάτοψη → χώρος → έπιπλα & ράφια<br>② + για αντικείμενα<br>③ Ψάξε από εδώ ό,τι θέλεις</div><button onclick="S.seen=1;save();render()">Ξεκίνα →</button></div>';
+
+  /* Spotlight search */
+  h+='<div class="card sticky-search" style="padding:12px"><div class="spotlight"><span class="sp-ico">🔍</span><input id="q" placeholder="Αναζήτηση σε όλο το σπίτι…" value="'+esc(q)+'" oninput="q=this.value;catF=\'\';keep()" onfocus="if(!q)openCmdk()"></div>';
+  h+='<div class="pill-nav" style="margin-top:10px;margin-bottom:0">'+cats().map(function(c){return '<button class="'+(catF==c?'':'g')+'" onclick="catF=catF==\''+esc(c)+'\'?\'\':\''+esc(c)+'\';q=\'\';render()">'+esc(c)+'</button>'}).join('')+'<button class="g" onclick="addCat()">+</button></div>';
+
+  if(q||catF){
+    h+='<div class="stag" style="margin-top:12px">'+(res.length?res.map(itemRow).join(''):'<div class="empty-state"><div class="big">🔍</div><p>Τίποτα για «'+esc(q||catF)+'»</p><button class="g" onclick="q=\'\';catF=\'\';render()">Καθαρισμός</button></div>')+'</div>';
+  }
+  h+='</div>';
+
+  if(!(q||catF)){
+    /* Quick actions */
+    h+='<div class="home-actions">';
+    h+='<button class="g" onclick="view=\'plan\';render()"><span class="ico">🗺</span>Κάτοψη</button>';
+    h+='<button class="g" onclick="quickAdd()"><span class="ico">＋</span>Προσθήκη</button>';
+    h+='<button class="g" onclick="view=\'shop\';render()"><span class="ico">🛒</span>Αγορές'+(op.length?' ('+op.length+')':'')+'</button>';
+    h+='</div>';
+
+    /* Stats */
+    h+='<div class="stats"><div class="stat accent"><b>'+S.items.length+'</b><span>Αντικείμενα</span></div><div class="stat'+(op.length?' warn':'')+'"><b>'+op.length+'</b><span>Αγορές</span></div><div class="stat'+(exWeek.length?' warn':'')+'"><b>'+exWeek.length+'</b><span>Λήγουν</span></div><div class="stat"><b>'+S.rooms.filter(function(r){return r.f&&r.f.length}).length+'</b><span>Χώροι</span></div></div>';
+
+    /* Today feed */
+    h+=dueCard();
+
+    if(lost.length)h+='<div class="card"><h2>Προς έλεγχο</h2>'+lost.map(itemRow).join('')+'</div>';
+
+    /* Expiring */
+    h+='<div class="card"><div class="section-head"><h2>Λήγει σύντομα</h2>'+(exWeek.length?'<span class="notif-badge">'+exWeek.length+' εβδ.</span>':'')+'</div>';
+    h+=(ex.length?ex.slice(0,6).map(function(i){var d=days(i.e);return '<div class="row'+(d<=7?' exp-week':'')+'"><span>'+esc(i.n)+'</span><span class="'+(d<=7?'warn':'')+'">'+d+'μ</span><button class="g" onclick="rebuy(\''+i.id+'\')">🛒</button></div>'}).join('')+(ex.length>6?'<div class="path">+ '+(ex.length-6)+' ακόμα</div>':''):'<div class="empty-state" style="padding:16px"><div class="big">✨</div><p>Όλα εντάξει</p></div>')+'</div>';
+
+    /* Recent */
+    var rec=(S.recent||[]).map(function(id){return gi(id)}).filter(Boolean).slice(0,6);
+    if(rec.length){
+      h+='<div class="card"><h2>Πρόσφατα</h2><div>';
+      rec.forEach(function(i){h+='<span class="recent-chip" onclick="pushRecent(\''+i.id+'\');itemForm(\''+i.id+'\')">'+(i.p?'':'📦 ')+esc(i.n)+'</span>'});
+      h+='</div></div>';
+    }
+
+    /* Shopping preview */
+    h+='<div class="card"><div class="section-head"><h2>Λίστα αγορών</h2><button class="g" style="padding:6px 12px;min-height:0" onclick="view=\'shop\';render()">Άνοιγμα</button></div>';
+    h+=(op.length?op.slice(0,4).map(function(x){return '<div class="row"><span>'+esc(x.t)+'</span></div>'}).join(''):'<div class="path">Άδεια λίστα</div>')+'</div>';
+
+    h+='<div class="quick-grid"><button class="g" onclick="bulk()">🔁 Μαζική μεταφορά</button><button class="g" onclick="recipes()">🍳 Τι να μαγειρέψω</button></div>';
+  }
   h+=storageWarn();
  }
-
  if(view=='plan'){if(ge&&!hxOf(hs))ge=false;if(hxOf(hs)&&FLR>=hFl(hxOf(hs)).length)FLR=0;h+=houseTabs()+(hxOf(hs)?(ge?gePlan(hs):planSvgC(hs)):hs==6?planSvg8():hs==5?planSvg7():hs==4?planSvg6():hs==3?planSvg5():hs==2?planSvg4():planSvg2())+'<div id="fp"></div>'+houseBtns();}if(view=='planold'){
   h+='<div class="card"><h2>Κάτοψη</h2><div class="plan">'+S.rooms.map(function(r,i){var n=S.items.filter(function(x){return x.r==i}).length;return '<button class="room" onclick="cur='+i+';view=\'room\';render()"><b>'+esc(r.n)+'</b><small>'+n+' αντικ.</small>'+(i==4||i==5?'<span class="door">🚪</span>':'')+'</button>'}).join('')+'</div></div>';
  }
@@ -226,7 +617,7 @@ function render(){
  if(view=='work')h+=workHtml();
  if(view=='menu')h+=menuHtml();
  document.getElementById('app').innerHTML=h;document.getElementById('app').className='v-'+view;if(view=='room')initCv();if(view=='plan'){if(ge)geInit();else furnInit()}
- document.getElementById('nav').innerHTML=[['home','🏠 Αρχική'],['plan','🗺 Κάτοψη'],['shop','🛒 Λίστα'],['menu','☰ Μενού']].map(function(t){return '<button class="'+((view==t[0]||(t[0]=='plan'&&(view=='room'||view=='shelf'))||(t[0]=='menu'&&view=='work'))?'on':'')+'" onclick="view=\''+t[0]+'\';render()">'+t[1]+'</button>'}).join('');
+ document.getElementById('nav').innerHTML=[['home','🏠','Αρχική'],['plan','🗺','Κάτοψη'],['shop','🛒','Λίστα'],['menu','☰','Μενού']].map(function(t){return '<button class="'+((view==t[0]||(t[0]=='plan'&&(view=='room'||view=='shelf'))||(t[0]=='menu'&&view=='work'))?'on':'')+'" onclick="view=\''+t[0]+'\';render()"><span style="font-size:18px;line-height:1">'+t[1]+'</span><span>'+t[2]+'</span></button>'}).join('');
  tick();post();
 }
 function keep(){var p=document.getElementById('q').selectionStart;render();var e=document.getElementById('q');e.focus();e.setSelectionRange(p,p)}
@@ -284,7 +675,7 @@ function quickAdd(name){document.getElementById('md').innerHTML='<div class="mod
 function quickSave(){var n=document.getElementById('qn').value.trim();if(!n)return;S.items.push({id:(lastAdd=uid()),n:n,c:'',e:document.getElementById('qe').value,r:+document.getElementById('qr').value,f:'',s:'',q:'',u:'',m:''});save();closeM();render();ok()}
 function rebuy(id){var it=gi(id);if(it&&!S.shop.some(function(x){return x.t==it.n&&!x.d}))S.shop.push({t:it.n,d:false});save();render();toast('Προστέθηκε στη λίστα αγορών',1)}
 function toggleLost(id){var it=gi(id);it.lost=!it.lost;save();render()}
-function showWhere(id){hl=gi(id).r;hs=S.rooms[hl].h||1;FLR=S.rooms[hl].fl||0;view='plan';render();setTimeout(function(){hl=-1;if(view=='plan')render()},6000)}
+function showWhere(id){var _it=gi(id);if(!_it)return;pushRecent(id);hl=_it.r;hs=S.rooms[hl].h||1;FLR=S.rooms[hl].fl||0;view='plan';render();setTimeout(function(){hl=-1;if(view=='plan')render()},6000)}
 function toast(m,nu){var t=document.getElementById('tt');if(!t){t=document.createElement('div');t.id='tt';t.style.cssText='position:fixed;left:12px;right:12px;bottom:76px;background:var(--tx);color:var(--bg);padding:10px 14px;border-radius:12px;align-items:center;justify-content:space-between;z-index:8';document.body.appendChild(t)}t.innerHTML=esc(m)+(nu?'':' <button onclick="undo()">↩ Αναίρεση</button>');t.style.display='flex';clearTimeout(tm);tm=setTimeout(function(){t.style.display='none'},8000)}
 function storageWarn(){try{var raw=localStorage.getItem('spiti')||'';var kb=Math.round(raw.length*2/1024);if(kb<1800)return'';var msg=kb>3500?'Η αποθήκευση είναι σχεδόν γεμάτη ('+kb+' KB). Αφαίρεσε φωτογραφίες ή κάνε εξαγωγή.':'Μεγάλο μέγεθος δεδομένων ('+kb+' KB). Καλό είναι να κάνεις εξαγωγή αντιγράφου.';return '<div class="storage-warn">⚠️ '+msg+'</div>'}catch(e){return''}}
 function toggleNotif(){if(!('Notification' in window)){toast('Οι ειδοποιήσεις δεν υποστηρίζονται σε αυτόν τον browser',1);return}
@@ -325,7 +716,7 @@ function itemForm(id,fid,si){ed0=id?path(gi(id)):'';
  fill();showPh();
 }
 function fill(){var fs=S.rooms[ed.r].f;if(!fobj(ed.r,ed.f))ed.f=fs[0]?fs[0].id:'';document.getElementById('ff').innerHTML=fs.map(function(f){return '<option value="'+f.id+'"'+(f.id==ed.f?' selected':'')+'>'+esc(f.n)+'</option>'}).join('');var f=fobj(ed.r,ed.f),sh=f?f.s:[];if(sh.indexOf(ed.s)<0)ed.s=sh[0]||'';document.getElementById('fs').innerHTML=sh.map(function(s){return '<option'+(s==ed.s?' selected':'')+'>'+esc(s)+'</option>'}).join('')}
-function saveItem(){var n=document.getElementById('fn').value.trim();if(!n)return;var o={id:ed.id||uid(),n:n,c:document.getElementById('fc').value.trim(),e:document.getElementById('fe').value,r:+document.getElementById('fr').value,f:document.getElementById('ff').value,s:document.getElementById('fs').value,q:document.getElementById('fq').value,u:document.getElementById('fu').value.trim(),m:document.getElementById('fm').value,lost:ed.lost,prev:ed.prev,p:ed.p||''};if(ed.id&&ed0&&ed0!=path(o))o.prev=ed0;if(!o.f||!o.s){document.getElementById('fs').insertAdjacentHTML('afterend','<div class="warn">Πρόσθεσε πρώτα έπιπλο και ράφι.</div>');return}if(ed.id){S.items=S.items.map(function(i){return i.id==ed.id?o:i})}else S.items.push(o);lastAdd=o.id;save();closeM();render();ok()}
+function saveItem(){var n=document.getElementById('fn').value.trim();if(!n)return;var o={id:ed.id||uid(),n:n,c:document.getElementById('fc').value.trim(),e:document.getElementById('fe').value,r:+document.getElementById('fr').value,f:document.getElementById('ff').value,s:document.getElementById('fs').value,q:document.getElementById('fq').value,u:document.getElementById('fu').value.trim(),m:document.getElementById('fm').value,lost:ed.lost,prev:ed.prev,p:ed.p||''};if(ed.id&&ed0&&ed0!=path(o))o.prev=ed0;if(!o.f||!o.s){document.getElementById('fs').insertAdjacentHTML('afterend','<div class="warn">Πρόσθεσε πρώτα έπιπλο και ράφι.</div>');return}if(ed.id){S.items=S.items.map(function(i){return i.id==ed.id?o:i})}else S.items.push(o);lastAdd=o.id;pushRecent(o.id);save();closeM();render();ok()}
 
 var wk='t',FR=[[1,'Καθημερινά'],[7,'Εβδομαδιαία'],[30,'Μηνιαία'],[90,'Ανά 3 μήνες'],[180,'Ανά 6 μήνες'],[365,'Ετήσια']];
 var SEC={t:{n:'Δουλειές',ic:'🧹',f:[['n','Δουλειά / συντήρηση (π.χ. φίλτρα A/C, σέρβις καυστήρα)','text'],['fr','Συχνότητα','sel'],['last','Τελευταία φορά που έγινε (άδειο = να γίνει τώρα)','date'],['note','Σημείωση','text']]},
@@ -360,17 +751,17 @@ function workHtml(){var h='<button class="g" onclick="view=\'menu\';render()">�
  if(wk=='r'){var s=0;recs('r').forEach(function(r){s+=+r.cost||0});if(s)h+='<div class="path" style="margin-bottom:8px">Συνολικό κόστος επισκευών: '+s+'€</div>'}
  return h+'<button style="width:100%" onclick="recForm(wk)">+ Προσθήκη</button>'}
 function menuHtml(){
- var h='<h3 style="margin:6px 0 14px">☰ Μενού</h3>';
- h+='<div class="card"><h2>Εργασίες</h2>';
+ var h='<h3 style="margin:4px 0 16px">Μενού</h3>';
+ h+='<div class="card"><h2>Εργασίες σπιτιού</h2>';
  Object.keys(SEC).forEach(function(k){
   var cnt=k=='f'?S.items.filter(function(i){return i.r==1||tg(i).indexOf('Τρόφιμα')>=0}).length:recs(k).length;
-  h+='<div class="row" style="cursor:pointer" onclick="wk=\''+k+'\';view=\'work\';render()"><span style="font-size:20px;margin-right:10px">'+SEC[k].ic+'</span><div style="flex:1"><b>'+esc(SEC[k].n)+'</b>'+(cnt?'<div class="path">'+cnt+' εγγραφές</div>':'')+'</div><span style="color:var(--mu)">›</span></div>';
+  h+='<div class="menu-row" onclick="wk=\''+k+'\';view=\'work\';render()"><div class="menu-ico">'+SEC[k].ic+'</div><div style="flex:1;min-width:0"><b>'+esc(SEC[k].n)+'</b><div class="path">'+(cnt?cnt+' εγγραφ'+(cnt==1?'ή':'ές'):'Άδειο')+'</div></div><span class="chev">›</span></div>';
  });
  h+='</div>';
- h+='<div class="card"><div class="row" style="cursor:pointer" onclick="openSettings()"><span style="font-size:20px;margin-right:10px">⚙️</span><div style="flex:1"><b>Ρυθμίσεις</b><div class="path">Θέμα, ειδοποιήσεις, εμφάνιση</div></div><span style="color:var(--mu)">›</span></div></div>';
- h+='<div class="card"><h2>Αντίγραφο ασφαλείας & Ειδοποιήσεις</h2><div class="path" style="margin-bottom:10px">Κράτα ένα αρχείο με όλα τα δεδομένα σου. Μπορείς επίσης να ενεργοποιήσεις ειδοποιήσεις για λήξεις και φάρμακα.</div>';
+ h+='<div class="card"><div class="menu-row" onclick="openSettings()"><div class="menu-ico">⚙️</div><div style="flex:1"><b>Ρυθμίσεις</b><div class="path">Θέμα, ειδοποιήσεις, εμφάνιση</div></div><span class="chev">›</span></div></div>';
+ h+='<div class="card"><h2>Δεδομένα & ειδοποιήσεις</h2><div class="path" style="margin-bottom:12px">Εξαγωγή για νέο κινητό, εισαγωγή, και υπενθυμίσεις λήξεων / φαρμάκων.</div>';
  h+=storageWarn();
- h+='<div style="display:flex;gap:8px;flex-wrap:wrap"><button onclick="doExport()">⬇ Εξαγωγή (JSON)</button><button class="g" onclick="document.getElementById(\'imf\').click()">⬆ Εισαγωγή</button><button class="g" onclick="toggleNotif()">🔔 Ειδοποιήσεις</button></div>';
+ h+='<div style="display:flex;gap:8px;flex-wrap:wrap"><button onclick="doExport()">⬇ Εξαγωγή</button><button class="g" onclick="document.getElementById(\'imf\').click()">⬆ Εισαγωγή</button><button class="g" onclick="toggleNotif()">🔔 Ειδοποιήσεις</button></div>';
  h+='<input id="imf" type="file" accept=".json,application/json" style="display:none" onchange="doImport(this)"></div>';
  return h;
 }
@@ -396,73 +787,83 @@ function recSave(k,id){var v={};SEC[k].f.forEach(function(f){if(f[2]=='photo')v.
 function recDel(k,id){sure('Διαγραφή;',function(){S.rec[k]=recs(k).filter(function(r){return r.id!=id});save();render()})}
 function recDo(k,id){var r=recGet(k,id);if(k=='t')r.last=tdy();if(k=='b')r.paid=ym();if(k=='l')r.ret=1;if(k=='m')r.t=tdy();save();render()}
 function recZoom(id){var r=recGet('d',id)||recGet('r',id);if(r&&r.p){gi=gi;document.getElementById('md').innerHTML='<div class="modal" onclick="closeM()"><div style="text-align:center"><img src="'+r.p+'" style="max-width:100%;max-height:75vh;border-radius:10px"><h3>'+esc(r.n)+'</h3></div></div>'}}
-function dueCard(){var o=[];recs('m').forEach(function(r){if(r.times&&r.t!=tdy())o.push([0,'💊',r.n+' ('+r.times+')','m']);else if(r.e&&days(r.e)<=30)o.push([days(r.e),'💊',r.n+' (λήξη)','m'])});recs('t').forEach(function(r){var d=days(nextT(r));if(d<=0)o.push([d,'🧹',r.n,'t'])});recs('b').forEach(function(r){if(r.paid==ym())return;var d=days(billNext(r));if(d<=7)o.push([d,'💶',r.n,'b'])});recs('d').forEach(function(r){if(r.e){var d=days(r.e);if(d<=30)o.push([d,'📄',r.n,'d'])}});recs('l').forEach(function(r){if(!r.ret&&r.d&&-days(r.d)>=30)o.push([999,'🤝',r.n+' → '+(r.who||''),'l'])});
- if(!o.length)return'';o.sort(function(a,b){return a[0]-b[0]});
- return '<div class="card"><h2>Για σήμερα</h2>'+o.slice(0,8).map(function(x){return '<div class="row"><span>'+x[1]+' '+esc(x[2])+' <span class="'+(x[0]<=0?'warn':'path')+'">'+(x[3]=='l'?'δανεισμένο πάνω από μήνα':dtxt(x[0]))+'</span></span><button class="g" onclick="wk=\''+x[3]+'\';view=\'work\';render()">›</button></div>'}).join('')+'</div>'}
+function dueCard(){
+ var o=[];
+ recs('m').forEach(function(r){if(r.times&&r.t!=tdy())o.push([0,'💊',r.n+' ('+r.times+')','m']);else if(r.e&&days(r.e)<=30)o.push([days(r.e),'💊',r.n+' (λήξη)','m'])});
+ recs('t').forEach(function(r){var d=days(nextT(r));if(d<=0)o.push([d,'🧹',r.n,'t'])});
+ recs('b').forEach(function(r){if(r.paid==ym())return;var d=days(billNext(r));if(d<=7)o.push([d,'💶',r.n,'b'])});
+ recs('d').forEach(function(r){if(r.e){var d=days(r.e);if(d<=30)o.push([d,'📄',r.n,'d'])}});
+ recs('l').forEach(function(r){if(!r.ret&&r.d&&-days(r.d)>=30)o.push([999,'🤝',r.n+' → '+(r.who||''),'l'])});
+ if(!o.length)return'<div class="card"><div class="section-head"><h2>Σήμερα</h2></div><div class="empty-state" style="padding:20px"><div class="big">☀️</div><p>Τίποτα επείγον — καλή μέρα</p></div></div>';
+ o.sort(function(a,b){return a[0]-b[0]});
+ return '<div class="card"><div class="section-head"><h2>Σήμερα</h2><span class="notif-badge">'+Math.min(o.length,8)+'</span></div><div class="today-feed">'+o.slice(0,8).map(function(x){return '<div class="feed-item" onclick="wk=\''+x[3]+'\';view=\'work\';render()"><div class="feed-ico'+(x[0]<=0?' hot':'')+'">'+x[1]+'</div><div style="flex:1;min-width:0"><b style="font-weight:600">'+esc(x[2])+'</b><div class="path '+(x[0]<=0?'warn':'')+'">'+(x[3]=='l'?'δανεισμένο >1 μήνα':dtxt(x[0]))+'</div></div><span style="color:var(--mu)">›</span></div>'}).join('')+'</div></div>';
+}
+
+
+function openCmdk(){
+  var el=document.getElementById('cmdk');
+  if(!el){
+    el=document.createElement('div');el.id='cmdk';el.className='cmdk';
+    el.innerHTML='<div class="cmdk-box"><input id="cmdk-q" placeholder="Ψάξε αντικείμενο, χώρο…" autocomplete="off"><div class="cmdk-results" id="cmdk-r"></div></div>';
+    document.body.appendChild(el);
+    el.addEventListener('click',function(e){if(e.target===el)closeCmdk()});
+    document.getElementById('cmdk-q').addEventListener('input',function(){cmdkSearch(this.value)});
+    document.getElementById('cmdk-q').addEventListener('keydown',function(e){if(e.key==='Escape')closeCmdk()});
+  }
+  el.classList.add('open');
+  var inp=document.getElementById('cmdk-q');inp.value=q||'';
+  setTimeout(function(){inp.focus();cmdkSearch(inp.value)},40);
+}
+function closeCmdk(){var el=document.getElementById('cmdk');if(el)el.classList.remove('open')}
+function cmdkSearch(v){
+  v=(v||'').toLowerCase().trim();
+  var r=document.getElementById('cmdk-r');if(!r)return;
+  var hits=[];
+  S.items.forEach(function(i){
+    if(!v||i.n.toLowerCase().indexOf(v)>=0||(path(i)+'').toLowerCase().indexOf(v)>=0||tg(i).join(' ').toLowerCase().indexOf(v)>=0)
+      hits.push({t:'item',i:i,label:i.n,sub:path(i)});
+  });
+  S.rooms.forEach(function(room,idx){
+    if(!v||room.n.toLowerCase().indexOf(v)>=0||(room.note||'').toLowerCase().indexOf(v)>=0)
+      hits.push({t:'room',idx:idx,label:room.n,sub:'Χώρος · '+S.items.filter(function(x){return x.r==idx}).length+' αντικ.'});
+  });
+  hits=hits.slice(0,20);
+  if(!hits.length){r.innerHTML='<div class="cmdk-empty">Δεν βρέθηκε τίποτα</div>';return}
+  r.innerHTML=hits.map(function(h){
+    if(h.t==='item')return '<div class="cmdk-item" onclick="closeCmdk();pushRecent(\''+h.i.id+'\');showWhere(\''+h.i.id+'\')"><span>📦</span><div><b>'+esc(h.label)+'</b><div class="path">'+h.sub+'</div></div></div>';
+    return '<div class="cmdk-item" onclick="closeCmdk();cur='+h.idx+';view=\'room\';render()"><span>🚪</span><div><b>'+esc(h.label)+'</b><div class="path">'+esc(h.sub)+'</div></div></div>';
+  }).join('');
+}
+
+document.addEventListener('keydown',function(e){
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCmdk()}
+  if(e.key==='Escape')closeCmdk();
+});
+
+var lp={x:typeof innerWidth!=='undefined'?innerWidth/2:200,y:typeof innerHeight!=='undefined'?innerHeight/2:200},lv='';
+function closeM(){document.getElementById('md').innerHTML=''}
+function doExport(){var d=new Date().toISOString().slice(0,10),json=JSON.stringify(S);(window.claude&&claude.use?claude.use('downloads'):Promise.resolve(null)).then(function(x){if(!x){backup();return}return x.save({filename:'spiti-backup-'+d+'.json',data:json}).then(function(){toast('Το αντίγραφο αποθηκεύτηκε',1)},function(e){if(!e||e.code!='declined')backup()})}).catch(function(){backup()})}
+function doImport(inp){var f=inp.files[0];if(!f)return;var fr=new FileReader();fr.onload=function(){try{var o=JSON.parse(fr.result);if(!o.rooms||!o.items)throw 0;sure('Να αντικατασταθούν τα τωρινά δεδομένα με το αντίγραφο;',function(){S=o;fixRooms();save();render();toast('Έγινε εισαγωγή δεδομένων',1)})}catch(e){toast('Μη έγκυρο αρχείο',1)}inp.value=''};fr.readAsText(f)}
+function ok(){var s=document.createElement('div');s.className='okr';s.style.left=lp.x+'px';s.style.top=lp.y+'px';document.body.appendChild(s);setTimeout(function(){s.remove()},900)}
+function readPhoto(inp){var f=inp.files[0];if(!f)return;var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,720/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ed.p=c.toDataURL('image/jpeg',.65);showPh()};im.onerror=function(){toast('Δεν διαβάστηκε η φωτογραφία',1)};im.src=fr.result};fr.readAsDataURL(f)}
 function recipes(){var its=S.items.filter(function(i){return i.r==1||tg(i).indexOf('Τρόφιμα')>=0}).sort(function(a,b){return(a.e||'9')<(b.e||'9')?-1:1});
  if(!its.length){toast('Πρόσθεσε πρώτα τρόφιμα (στην Κουζίνα ή με ετικέτα Τρόφιμα)',1);return}
  function show(t){document.getElementById('md').innerHTML='<div class="modal"><div><h3>🍳 Προτάσεις</h3><div style="white-space:pre-wrap">'+esc(t)+'</div><button class="g" style="margin-top:10px" onclick="closeM()">Κλείσιμο</button></div></div>'}
  show('Σκέφτομαι συνταγές...');var list=its.map(function(i){return i.n+(i.q?' ('+i.q+' '+(i.u||'')+')':'')+(i.e?' [λήγει '+i.e+']':'')}).join(', ');
  (window.claude&&claude.use?claude.use('sample'):Promise.resolve(null)).then(function(sm){if(!sm){show('Δεν είναι διαθέσιμο εδώ.');return}return sm('Έχω στο σπίτι: '+list+'. Πρότεινε 3 απλές συνταγές στα ελληνικά που χρησιμοποιούν κυρίως αυτά, με προτεραιότητα σε όσα λήγουν σύντομα. Για κάθε μία: όνομα, υλικά που λείπουν, 3-4 σύντομα βήματα. Σκέτο κείμενο, χωρίς markdown.').then(function(r){show(r.text)})}).catch(function(){show('Δεν ήταν δυνατή η πρόταση τώρα.')})}
-function houseTabs0(){return '<div class="card"><div class="chips"><button class="'+(hs==1?'':'g')+'" onclick="hs=1;render()">🏠 '+esc(hname(1))+'</button><button class="'+(hs==2?'':'g')+'" onclick="hs=2;render()">🏡 '+esc(hname(2))+'</button><button class="'+(hs==3?'':'g')+'" onclick="hs=3;render()">🏘 '+esc(hname(3))+'</button><button class="'+(hs==4?'':'g')+'" onclick="hs=4;render()">🛖 '+esc(hname(4))+'</button><button class="'+(hs==5?'':'g')+'" onclick="hs=5;render()">🏗 '+esc(hname(5))+'</button><button class="'+(hs==6?'':'g')+'" onclick="hs=6;render()">🏬 '+esc(hname(6))+'</button></div></div>'}
-function planSvg5(){var P=[['20,20 85,20 85,290 20,290',52,140,14,1],['85,20 185,20 185,160 85,160',135,85,15],['85,160 185,160 185,240 85,240',135,198,14],['185,60 300,60 300,150 400,150 400,240 185,240',292,200,17],['85,240 185,240 185,400 85,400',135,318,15],['185,240 440,240 440,400 185,400',312,322,17]],
- T=['rgba(90,150,255,.18)','rgba(90,190,110,.22)','rgba(240,180,60,.24)','rgba(170,110,255,.24)','rgba(255,150,70,.28)','rgba(40,190,190,.26)','rgba(230,90,140,.22)'],
- W=['20,290 20,20 185,20 185,240','300,60 300,150 400,150 400,240','185,60 300,60','85,20 85,160','85,160 185,160','20,290 85,290','140,240 440,240','440,240 440,400 85,400 85,290','185,240 185,400'],
- K=['85,160 85,290','85,240 140,240','350,240 398,218','372,246 440,240'],
- D=[[135,146,135,174],[71,200,99,200],[107,226,107,254],[172,204,198,204],[230,226,230,254],[350,138,350,162],[386,222,414,222]];
- var s='<div class="card"><h2>'+esc(hname(3))+' · πάτα ένα δωμάτιο</h2><svg viewBox="0 0 460 420" style="width:100%;display:block">';
- P.forEach(function(p,k){var i=15+k,r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length,fz=p[3],ln=p[4]?r.n.split(' '):[r.n];
-  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:none;cursor:pointer" onclick="pick('+i+')"/>';
-  ln.forEach(function(t,j){s+='<text x="'+p[1]+'" y="'+(p[2]+j*(fz+3))+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:'+fz+'px;font-weight:700;pointer-events:none">'+esc(t)+'</text>'});
-  s+='<text x="'+p[1]+'" y="'+(p[2]+(ln.length-1)*(fz+3)+fz+1)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:'+Math.max(8,fz-5)+'px;pointer-events:none">'+n+' αντικ.</text>'});
- W.forEach(function(w){s+='<polyline points="'+w+'" style="fill:none;stroke:var(--tx);stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;pointer-events:none"/>'});
- K.forEach(function(w){s+='<polyline points="'+w+'" style="fill:none;stroke:var(--tx);stroke-width:2.5;stroke-linecap:square;pointer-events:none"/>'});
- D.forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:7;stroke-linecap:butt;pointer-events:none"/>'});
- return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
-function planSvg4(){var P=[['20,250 85,250 85,400 20,400',52,318],['20,20 150,20 150,400 85,400 85,250 20,250',85,130],['150,20 300,20 300,400 150,400',225,205],['300,20 450,20 450,200 300,200',375,100],['300,200 450,200 450,400 300,400',375,295],['450,20 660,20 660,400 450,400',555,205]],T=['rgba(90,150,255,.16)','rgba(90,190,110,.2)','rgba(240,180,60,.22)','rgba(170,110,255,.24)','rgba(255,150,70,.28)','rgba(40,190,190,.26)'];
- var s='<div class="card"><h2>'+esc(hname(2))+' · πάτα ένα δωμάτιο</h2><svg viewBox="0 0 680 420" style="width:100%;display:block">';
- P.forEach(function(p,k){var i=9+k,r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length,fz=k==0?12:17,ln=k==0?r.n.split(' '):[r.n];
-  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:var(--tx);stroke-width:5;stroke-linejoin:miter;cursor:pointer" onclick="pick('+i+')"/>';
-  ln.forEach(function(t,j){s+='<text x="'+p[1]+'" y="'+(p[2]+j*(fz+3))+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:'+fz+'px;font-weight:700;pointer-events:none">'+esc(t)+'</text>'});
-  s+='<text x="'+p[1]+'" y="'+(p[2]+(ln.length-1)*(fz+3)+20)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:'+(k==0?10:14)+'px;pointer-events:none">'+n+' αντικ.</text>'});
- [[136,120,164,120],[118,386,118,414],[52,386,52,414],[286,300,314,300],[375,186,375,214],[436,320,464,320],[410,386,410,414]].forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:8;stroke-linecap:butt;pointer-events:none"/>'});
- return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
-function planSvg6(){var P=[['20,80 250,80 250,160 20,160',135,116,22],['20,160 250,160 250,240 20,240',135,196,26],['290,60 660,60 660,260 290,260',475,160,23]],T=['rgba(90,150,255,.16)','rgba(240,180,60,.22)','rgba(90,190,110,.2)'];
- var s='<div class="card"><h2>'+esc(hname(4))+' · πάτα ένα δωμάτιο</h2><svg viewBox="0 40 680 240" style="width:100%;display:block">';
- P.forEach(function(p,k){var i=p[3],r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length;
-  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:var(--tx);stroke-width:5;stroke-linejoin:miter;cursor:pointer" onclick="pick('+i+')"/>';
-  s+='<text x="'+p[1]+'" y="'+p[2]+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:20px;font-weight:700;pointer-events:none">'+esc(r.n)+'</text><text x="'+p[1]+'" y="'+(p[2]+22)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:14px;pointer-events:none">'+n+' αντικ.</text>'});
- [[236,121,264,121],[236,192,264,192],[608,246,608,274]].forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:8;stroke-linecap:butt;pointer-events:none"/>'});
- return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
-function planSvg7(){var P=[['20,20 180,20 180,300 20,300',100,160],['180,20 460,20 460,300 180,300',320,160]],T=['rgba(90,150,255,.16)','rgba(90,190,110,.2)'];
- var s='<div class="card"><h2>'+esc(hname(5))+' · πάτα ένα δωμάτιο</h2><svg viewBox="0 0 480 320" style="width:100%;display:block">';
- P.forEach(function(p,k){var i=24+k,r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length;
-  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:var(--tx);stroke-width:5;stroke-linejoin:miter;cursor:pointer" onclick="pick('+i+')"/>';
-  s+='<text x="'+p[1]+'" y="'+p[2]+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:20px;font-weight:700;pointer-events:none">'+esc(r.n)+'</text><text x="'+p[1]+'" y="'+(p[2]+22)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:14px;pointer-events:none">'+n+' αντικ.</text>'});
- [[166,238,194,238],[446,248,474,248]].forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:8;stroke-linecap:butt;pointer-events:none"/>'});
- return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
-function planSvg8(){var P=[['41,21 139,21 139,158 41,158',90,86,27,15],['41,158 235,158 235,352 41,352',138,252,28,15],['139,21 332,21 332,71 139,71',235,42,29,14],['235,158 426,158 426,352 235,352',330,252,30,15],['332,21 426,21 426,158 296,158 296,71 332,71',362,106,31,15],['139,71 235,71 235,158 139,158',187,108,32,14],['41,352 235,352 235,422 41,422',138,384,33,15],['235,71 296,71 296,158 235,158',265,108,34,12]],
- T=['rgba(90,150,255,.16)','rgba(90,190,110,.2)','rgba(240,180,60,.22)','rgba(170,110,255,.24)','rgba(255,150,70,.28)','rgba(40,190,190,.26)','rgba(230,90,140,.22)','rgba(150,200,60,.24)'];
- var s='<div class="card"><h2>'+esc(hname(6))+' · πάτα ένα δωμάτιο</h2><svg viewBox="30 10 410 425" style="width:100%;display:block">';
- P.forEach(function(p,k){var i=p[3],r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length,fz=p[4];
-  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:var(--tx);stroke-width:5;stroke-linejoin:miter;cursor:pointer" onclick="pick('+i+')"/>';
-  s+='<text x="'+p[1]+'" y="'+p[2]+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:'+fz+'px;font-weight:700;pointer-events:none">'+esc(r.n)+'</text><text x="'+p[1]+'" y="'+(p[2]+fz+3)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:11px;pointer-events:none">'+n+' αντικ.</text>'});
- [[221,375,249,375]].forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:8;stroke-linecap:butt;pointer-events:none"/>'});
- return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
 function showPh(){var e=document.getElementById('ph');if(e)e.innerHTML=ed.p?'<img src="'+ed.p+'" style="max-width:100%;max-height:180px;border-radius:10px;display:block;margin-bottom:6px"><button class="g" onclick="ed.p=\'\';showPh()">✕ Αφαίρεση φωτογραφίας</button>':''}
-function readPhoto(inp){var f=inp.files[0];if(!f)return;var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,720/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ed.p=c.toDataURL('image/jpeg',.65);showPh()};im.onerror=function(){toast('Δεν διαβάστηκε η φωτογραφία',1)};im.src=fr.result};fr.readAsDataURL(f)}
 function zoom(id){var it=gi(id);if(!it||!it.p)return;document.getElementById('md').innerHTML='<div class="modal" onclick="closeM()"><div style="text-align:center"><img src="'+it.p+'" style="max-width:100%;max-height:70vh;border-radius:10px"><h3>'+esc(it.n)+'</h3><div class="path">'+path(it)+'</div><button class="g">Κλείσιμο</button></div></div>'}
-function doExport(){var d=new Date().toISOString().slice(0,10),json=JSON.stringify(S);(window.claude&&claude.use?claude.use('downloads'):Promise.resolve(null)).then(function(x){if(!x){backup();return}return x.save({filename:'spiti-backup-'+d+'.json',data:json}).then(function(){toast('Το αντίγραφο αποθηκεύτηκε',1)},function(e){if(!e||e.code!='declined')backup()})}).catch(function(){backup()})}
-function doImport(inp){var f=inp.files[0];if(!f)return;var fr=new FileReader();fr.onload=function(){try{var o=JSON.parse(fr.result);if(!o.rooms||!o.items)throw 0;sure('Να αντικατασταθούν τα τωρινά δεδομένα με το αντίγραφο;',function(){S=o;fixRooms();save();render();toast('Έγινε εισαγωγή δεδομένων',1)})}catch(e){toast('Μη έγκυρο αρχείο',1)}inp.value=''};fr.readAsText(f)}
-function closeM(){document.getElementById('md').innerHTML=''}
-var lp={x:innerWidth/2,y:innerHeight/2},lv='';
-addEventListener('pointerdown',function(e){lp={x:e.clientX,y:e.clientY};var b=e.target.closest&&e.target.closest('button');if(!b)return;var r=b.getBoundingClientRect(),d=Math.max(r.width,r.height)*2.2,s=document.createElement('span');s.className='lq';s.style.cssText='width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';b.appendChild(s);setTimeout(function(){s.remove()},650)},true);
-function ok(){var s=document.createElement('div');s.className='okr';s.style.left=lp.x+'px';s.style.top=lp.y+'px';document.body.appendChild(s);setTimeout(function(){s.remove()},900)}
 function post(){var a=document.getElementById('app');
  if(view!=lv){lv=view;a.classList.add('enter');[].forEach.call(a.children,function(c,i){c.style.setProperty('--k',Math.min(i,7))});setTimeout(function(){a.classList.remove('enter')},900)}
  [].forEach.call(a.querySelectorAll('.stag>.row'),function(e,i){e.style.setProperty('--i',Math.min(i,10))});
  [].forEach.call(a.querySelectorAll('button'),function(b){if(/^\+(\s|$)/.test(b.textContent.trim()))b.classList.add('plus')});
- lastAdd=''}
+ lastAdd='';
+ var fab=document.getElementById('fab');
+ if(!fab){fab=document.createElement('button');fab.id='fab';fab.className='fab plus';fab.setAttribute('aria-label','Γρήγορη προσθήκη');document.body.appendChild(fab)}
+ var show=view=='home'||view=='room'||view=='shelf'||view=='shop';
+ fab.style.display=show?'flex':'none';
+ fab.onclick=function(){if(view=='shop'){var e=document.getElementById('sh');if(e){e.focus();return}addShop()}else if(view=='room')itemForm();else if(view=='shelf')itemForm(null,curF,curS);else quickAdd()};
+}
 /* ===== Έπιπλα στην κάτοψη ===== */
 var U=.5,fe=false,fsel='',fplace=null,fcat=0,FG={},FS=null,FL=null,PK=1,FD=null,fLast=0,PTR={},PINCH=null,PAN=null,ZV=null,VB0=null,fwall=true,NS='http://www.w3.org/2000/svg';
 var FCAT=['Υπνοδωμάτιο','Σαλόνι','Κουζίνα','Γραφείο & αποθήκευση','Μπάνιο'];
@@ -673,6 +1074,51 @@ addEventListener('pointermove',zMove);addEventListener('pointerup',zUp);addEvent
 /* ===== Νέα σπίτια & σχεδίαση χώρων ===== */
 var FLR=0,ge=false,gmode=0,GS=-1,GV=-1,GP=[],GD=null,GT=['rgba(90,150,255,.16)','rgba(90,190,110,.2)','rgba(240,180,60,.22)','rgba(170,110,255,.24)','rgba(255,150,70,.28)','rgba(40,190,190,.26)'];
 function hxOf(k){return(S.hx||[]).filter(function(x){return x.k==k})[0]}
+function planSvg4(){var P=[['20,250 85,250 85,400 20,400',52,318],['20,20 150,20 150,400 85,400 85,250 20,250',85,130],['150,20 300,20 300,400 150,400',225,205],['300,20 450,20 450,200 300,200',375,100],['300,200 450,200 450,400 300,400',375,295],['450,20 660,20 660,400 450,400',555,205]],T=['rgba(90,150,255,.16)','rgba(90,190,110,.2)','rgba(240,180,60,.22)','rgba(170,110,255,.24)','rgba(255,150,70,.28)','rgba(40,190,190,.26)'];
+ var s='<div class="card"><h2>'+esc(hname(2))+' · πάτα ένα δωμάτιο</h2><svg viewBox="0 0 680 420" style="width:100%;display:block">';
+ P.forEach(function(p,k){var i=9+k,r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length,fz=k==0?12:17,ln=k==0?r.n.split(' '):[r.n];
+  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:var(--tx);stroke-width:5;stroke-linejoin:miter;cursor:pointer" onclick="pick('+i+')"/>';
+  ln.forEach(function(t,j){s+='<text x="'+p[1]+'" y="'+(p[2]+j*(fz+3))+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:'+fz+'px;font-weight:700;pointer-events:none">'+esc(t)+'</text>'});
+  s+='<text x="'+p[1]+'" y="'+(p[2]+(ln.length-1)*(fz+3)+20)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:'+(k==0?10:14)+'px;pointer-events:none">'+n+' αντικ.</text>'});
+ [[136,120,164,120],[118,386,118,414],[52,386,52,414],[286,300,314,300],[375,186,375,214],[436,320,464,320],[410,386,410,414]].forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:8;stroke-linecap:butt;pointer-events:none"/>'});
+ return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
+function planSvg5(){var P=[['20,20 85,20 85,290 20,290',52,140,14,1],['85,20 185,20 185,160 85,160',135,85,15],['85,160 185,160 185,240 85,240',135,198,14],['185,60 300,60 300,150 400,150 400,240 185,240',292,200,17],['85,240 185,240 185,400 85,400',135,318,15],['185,240 440,240 440,400 185,400',312,322,17]],
+ T=['rgba(90,150,255,.18)','rgba(90,190,110,.22)','rgba(240,180,60,.24)','rgba(170,110,255,.24)','rgba(255,150,70,.28)','rgba(40,190,190,.26)','rgba(230,90,140,.22)'],
+ W=['20,290 20,20 185,20 185,240','300,60 300,150 400,150 400,240','185,60 300,60','85,20 85,160','85,160 185,160','20,290 85,290','140,240 440,240','440,240 440,400 85,400 85,290','185,240 185,400'],
+ K=['85,160 85,290','85,240 140,240','350,240 398,218','372,246 440,240'],
+ D=[[135,146,135,174],[71,200,99,200],[107,226,107,254],[172,204,198,204],[230,226,230,254],[350,138,350,162],[386,222,414,222]];
+ var s='<div class="card"><h2>'+esc(hname(3))+' · πάτα ένα δωμάτιο</h2><svg viewBox="0 0 460 420" style="width:100%;display:block">';
+ P.forEach(function(p,k){var i=15+k,r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length,fz=p[3],ln=p[4]?r.n.split(' '):[r.n];
+  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:none;cursor:pointer" onclick="pick('+i+')"/>';
+  ln.forEach(function(t,j){s+='<text x="'+p[1]+'" y="'+(p[2]+j*(fz+3))+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:'+fz+'px;font-weight:700;pointer-events:none">'+esc(t)+'</text>'});
+  s+='<text x="'+p[1]+'" y="'+(p[2]+(ln.length-1)*(fz+3)+fz+1)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:'+Math.max(8,fz-5)+'px;pointer-events:none">'+n+' αντικ.</text>'});
+ W.forEach(function(w){s+='<polyline points="'+w+'" style="fill:none;stroke:var(--tx);stroke-width:4;stroke-linecap:square;stroke-linejoin:miter;pointer-events:none"/>'});
+ K.forEach(function(w){s+='<polyline points="'+w+'" style="fill:none;stroke:var(--tx);stroke-width:2.5;stroke-linecap:square;pointer-events:none"/>'});
+ D.forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:7;stroke-linecap:butt;pointer-events:none"/>'});
+ return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
+function planSvg6(){var P=[['20,80 250,80 250,160 20,160',135,116,22],['20,160 250,160 250,240 20,240',135,196,26],['290,60 660,60 660,260 290,260',475,160,23]],T=['rgba(90,150,255,.16)','rgba(240,180,60,.22)','rgba(90,190,110,.2)'];
+ var s='<div class="card"><h2>'+esc(hname(4))+' · πάτα ένα δωμάτιο</h2><svg viewBox="0 40 680 240" style="width:100%;display:block">';
+ P.forEach(function(p,k){var i=p[3],r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length;
+  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:var(--tx);stroke-width:5;stroke-linejoin:miter;cursor:pointer" onclick="pick('+i+')"/>';
+  s+='<text x="'+p[1]+'" y="'+p[2]+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:20px;font-weight:700;pointer-events:none">'+esc(r.n)+'</text><text x="'+p[1]+'" y="'+(p[2]+22)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:14px;pointer-events:none">'+n+' αντικ.</text>'});
+ [[236,121,264,121],[236,192,264,192],[608,246,608,274]].forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:8;stroke-linecap:butt;pointer-events:none"/>'});
+ return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
+function planSvg7(){var P=[['20,20 180,20 180,300 20,300',100,160],['180,20 460,20 460,300 180,300',320,160]],T=['rgba(90,150,255,.16)','rgba(90,190,110,.2)'];
+ var s='<div class="card"><h2>'+esc(hname(5))+' · πάτα ένα δωμάτιο</h2><svg viewBox="0 0 480 320" style="width:100%;display:block">';
+ P.forEach(function(p,k){var i=24+k,r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length;
+  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:var(--tx);stroke-width:5;stroke-linejoin:miter;cursor:pointer" onclick="pick('+i+')"/>';
+  s+='<text x="'+p[1]+'" y="'+p[2]+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:20px;font-weight:700;pointer-events:none">'+esc(r.n)+'</text><text x="'+p[1]+'" y="'+(p[2]+22)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:14px;pointer-events:none">'+n+' αντικ.</text>'});
+ [[166,238,194,238],[446,248,474,248]].forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:8;stroke-linecap:butt;pointer-events:none"/>'});
+ return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
+function planSvg8(){var P=[['41,21 139,21 139,158 41,158',90,86,27,15],['41,158 235,158 235,352 41,352',138,252,28,15],['139,21 332,21 332,71 139,71',235,42,29,14],['235,158 426,158 426,352 235,352',330,252,30,15],['332,21 426,21 426,158 296,158 296,71 332,71',362,106,31,15],['139,71 235,71 235,158 139,158',187,108,32,14],['41,352 235,352 235,422 41,422',138,384,33,15],['235,71 296,71 296,158 235,158',265,108,34,12]],
+ T=['rgba(90,150,255,.16)','rgba(90,190,110,.2)','rgba(240,180,60,.22)','rgba(170,110,255,.24)','rgba(255,150,70,.28)','rgba(40,190,190,.26)','rgba(230,90,140,.22)','rgba(150,200,60,.24)'];
+ var s='<div class="card"><h2>'+esc(hname(6))+' · πάτα ένα δωμάτιο</h2><svg viewBox="30 10 410 425" style="width:100%;display:block">';
+ P.forEach(function(p,k){var i=p[3],r=S.rooms[i],n=S.items.filter(function(x){return x.r==i}).length,fz=p[4];
+  s+='<polygon'+(i==hl?' class="hl"':'')+' points="'+p[0]+'" style="fill:'+(r.col||T[k])+';stroke:var(--tx);stroke-width:5;stroke-linejoin:miter;cursor:pointer" onclick="pick('+i+')"/>';
+  s+='<text x="'+p[1]+'" y="'+p[2]+'" text-anchor="middle" style="fill:'+(r.col?'#222':'var(--tx)')+';font-size:'+fz+'px;font-weight:700;pointer-events:none">'+esc(r.n)+'</text><text x="'+p[1]+'" y="'+(p[2]+fz+3)+'" text-anchor="middle" style="fill:'+(r.col?'#444':'var(--mu)')+';font-size:11px;pointer-events:none">'+n+' αντικ.</text>'});
+ [[221,375,249,375]].forEach(function(d){s+='<line x1="'+d[0]+'" y1="'+d[1]+'" x2="'+d[2]+'" y2="'+d[3]+'" style="stroke:#d11;stroke-width:8;stroke-linecap:butt;pointer-events:none"/>'});
+ return s+'</svg><div class="path">Κόκκινα σημάδια = πόρτες</div></div>'}
+function houseTabs0(){return '<div class="card"><div class="chips"><button class="'+(hs==1?'':'g')+'" onclick="hs=1;render()">🏠 '+esc(hname(1))+'</button><button class="'+(hs==2?'':'g')+'" onclick="hs=2;render()">🏡 '+esc(hname(2))+'</button><button class="'+(hs==3?'':'g')+'" onclick="hs=3;render()">🏘 '+esc(hname(3))+'</button><button class="'+(hs==4?'':'g')+'" onclick="hs=4;render()">🛖 '+esc(hname(4))+'</button><button class="'+(hs==5?'':'g')+'" onclick="hs=5;render()">🏗 '+esc(hname(5))+'</button><button class="'+(hs==6?'':'g')+'" onclick="hs=6;render()">🏬 '+esc(hname(6))+'</button></div></div>'}
 function houseTabs(){var h=houseTabs0(),x=(S.hx||[]).map(function(o){return '<button class="'+(hs==o.k?'':'g')+'" onclick="hs='+o.k+';FLR=0;ge=false;ZV=null;render()">🏠 '+esc(hname(o.k))+'</button>'}).join('')+'<button class="g" onclick="newHouse()">＋ Νέο σπίτι</button>';return h.replace(/<\/div><\/div>$/,x+'</div></div>')}
 function houseBtns(){var h='<button class="g" style="width:100%;margin-bottom:8px" onclick="houseEdit()">✎ Αλλαγή ονόματος «'+esc(hname(hs))+'»</button>';
  h+='<button class="g" style="width:100%;margin-bottom:8px" onclick="exportPlanPng()">🖼 Εξαγωγή κάτοψης σε PNG</button>';
